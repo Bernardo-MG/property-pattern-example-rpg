@@ -2,9 +2,6 @@
 
 Shows how to make use of the property pattern, using a RPG character as an example. This character will receive bonus and malus which will affect his stats.
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.example/property-pattern-example-rpg.svg)][maven-repo]
-[![Bintray](https://api.bintray.com/packages/bernardo-mg/maven/property-pattern-example-rpg/images/download.svg)][bintray-repo]
-
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
 
@@ -51,16 +48,6 @@ The project has been tested on the following Java versions:
 
 All other dependencies are handled through Maven, and noted in the included POM file.
 
-### Installing
-
-The recommended way to install the project is by setting it up as a dependency. To get the configuration information for this check the [Bintray repository][bintray-repo], or the [Maven Central Repository][maven-repo].
-
-It is always possible installing it by using the usual Maven command:
-
-```
-$ mvn install
-```
-
 ## Collaborate
 
 Any kind of help with the project will be well received, and there are two main ways to give such help:
@@ -80,8 +67,6 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
-[bintray-repo]: https://bintray.com/bernardo-mg/maven/property-pattern-example-rpg/view
-[maven-repo]: http://mvnrepository.com/artifact/com.bernardomg.example/property-pattern-example-rpg
 [issues]: https://github.com/bernardo-mg/property-pattern-example-rpg/issues
 [javadoc-develop]: https://docs.bernardomg.com/development/maven/property-pattern-example-rpg/apidocs
 [javadoc-release]: https://docs.bernardomg.com/maven/property-pattern-example-rpg/apidocs
