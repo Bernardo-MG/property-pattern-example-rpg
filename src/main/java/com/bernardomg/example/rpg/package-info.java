@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 /**
- * Provides placeholder unit tests.
+ * Provides placeholder classes.
  */
-package com.bernardomg.example.property.unit;
+package com.bernardomg.example.rpg;
 

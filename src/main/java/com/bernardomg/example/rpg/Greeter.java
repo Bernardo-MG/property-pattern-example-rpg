@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.property;
+package com.bernardomg.example.rpg;
 
 /**
  * Greeter class.

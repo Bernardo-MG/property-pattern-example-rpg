@@ -22,27 +22,27 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.property.integration;
+package com.bernardomg.example.rpg.unit;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.bernardomg.example.property.Greeter;
+import com.bernardomg.example.rpg.Greeter;
 
 /**
- * Integration tests for {@link Greeter}.
+ * Unit tests for {@link Greeter}.
  * <p>
- * This is actually a placeholder test for the integration tests suite.
+ * This is just a placeholder test for the unit tests suite.
  *
  * @author Bernardo Martínez Garrido
  *
  */
-public final class ITGreeter {
+public final class TestGreeter {
 
     /**
      * Default constructor.
      */
-    public ITGreeter() {
+    public TestGreeter() {
         super();
     }
 

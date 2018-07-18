@@ -21,37 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.bernardomg.example.property.unit;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.bernardomg.example.property.Greeter;
-
 /**
- * Unit tests for {@link Greeter}.
- * <p>
- * This is just a placeholder test for the unit tests suite.
- *
- * @author Bernardo Martínez Garrido
- *
+ * Provides placeholder integration tests.
  */
-public final class TestGreeter {
+package com.bernardomg.example.rpg.integration;
 
-    /**
-     * Default constructor.
-     */
-    public TestGreeter() {
-        super();
-    }
-
-    /**
-     * Tests that the {@code Greeter} returns a greeting.
-     */
-    @Test
-    public final void sayHello() {
-        Assert.assertEquals("Hello World!", new Greeter().sayHello());
-    }
-
-}
