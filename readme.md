@@ -83,9 +83,9 @@ The project has been released under the [MIT License][license].
 [bintray-repo]: https://bintray.com/bernardo-mg/maven/property-pattern-example-rpg/view
 [maven-repo]: http://mvnrepository.com/artifact/com.bernardomg.example/property-pattern-example-rpg
 [issues]: https://github.com/bernardo-mg/property-pattern-example-rpg/issues
-[javadoc-develop]: https://docs.bernardomg.com/development/maven/property-pattern-example-rpg/property-pattern-example-rpg/apidocs
-[javadoc-release]: https://docs.bernardomg.com/maven/property-pattern-example-rpg/property-pattern-example-rpg/apidocs
+[javadoc-develop]: https://docs.bernardomg.com/development/maven/property-pattern-example-rpg/apidocs
+[javadoc-release]: https://docs.bernardomg.com/maven/property-pattern-example-rpg/apidocs
 [license]: http://www.opensource.org/licenses/mit-license.php
 [scm]: https://github.com/bernardo-mg/property-pattern-example-rpg
-[site-develop]: https://docs.bernardomg.com/development/maven/property-pattern-example-rpg/property-pattern-example-rpg
-[site-release]: https://docs.bernardomg.com/maven/property-pattern-example-rpg/property-pattern-example-rpg
+[site-develop]: https://docs.bernardomg.com/development/maven/property-pattern-example-rpg
+[site-release]: https://docs.bernardomg.com/maven/property-pattern-example-rpg
