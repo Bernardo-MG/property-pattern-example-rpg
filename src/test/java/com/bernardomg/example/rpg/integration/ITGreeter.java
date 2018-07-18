@@ -24,8 +24,8 @@
 
 package com.bernardomg.example.rpg.integration;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.bernardomg.example.rpg.Greeter;
 
@@ -51,7 +51,7 @@ public final class ITGreeter {
      */
     @Test
     public final void sayHello() {
-        Assert.assertEquals("Hello World!", new Greeter().sayHello());
+        Assertions.assertEquals("Hello World!", new Greeter().sayHello());
     }
 
 }
