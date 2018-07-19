@@ -1,6 +1,6 @@
-# Property Pattern Example - RPG
+# RPG Patterns Example
 
-Shows how to make use of the property pattern, using a RPG character as an example. This character will receive bonus and malus which will affect his stats.
+An example making use of design patterns to model a RPG character.
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
@@ -67,10 +67,10 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
-[issues]: https://github.com/bernardo-mg/property-pattern-example-rpg/issues
-[javadoc-develop]: https://docs.bernardomg.com/development/maven/property-pattern-example-rpg/apidocs
-[javadoc-release]: https://docs.bernardomg.com/maven/property-pattern-example-rpg/apidocs
+[issues]: https://github.com/bernardo-mg/rpg-patterns-example/issues
+[javadoc-develop]: https://docs.bernardomg.com/development/maven/rpg-patterns-example/apidocs
+[javadoc-release]: https://docs.bernardomg.com/maven/rpg-patterns-example/apidocs
 [license]: http://www.opensource.org/licenses/mit-license.php
-[scm]: https://github.com/bernardo-mg/property-pattern-example-rpg
-[site-develop]: https://docs.bernardomg.com/development/maven/property-pattern-example-rpg
-[site-release]: https://docs.bernardomg.com/maven/property-pattern-example-rpg
+[scm]: https://github.com/bernardo-mg/rpg-patterns-example
+[site-develop]: https://docs.bernardomg.com/development/maven/rpg-patterns-example
+[site-release]: https://docs.bernardomg.com/maven/rpg-patterns-example
