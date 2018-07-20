@@ -24,5 +24,5 @@
 /**
  * Provides placeholder unit tests.
  */
-package com.bernardomg.example.rpg.unit;
 
+package com.bernardomg.example.rpg.unit;

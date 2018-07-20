@@ -5,80 +5,84 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-public class DefaultCharacter implements Character {
+import com.bernardomg.example.rpg.character.attribute.Attribute;
+import com.bernardomg.example.rpg.character.attribute.DefaultAttribute;
+import com.bernardomg.example.rpg.character.attribute.MultipliedDerivedAttribute;
 
-    private final Collection<Ability> abilities         = new ArrayList<>();
+public final class DefaultCharacter implements Character {
 
-    private Integer                   agility           = 0;
+    private final Collection<Ability> abilities    = new ArrayList<>();
 
-    private final DerivedAttributes   derivedAttributes = new DerivedAttributesCalculator(
-            this);
+    private final Attribute           agility      = new DefaultAttribute();
 
-    private Integer                   intelligence      = 0;
+    private final Attribute           damage;
 
-    private Integer                   strength          = 0;
+    private final Attribute           intelligence = new DefaultAttribute();
+
+    private final Attribute           mana;
+
+    private final Attribute           strength     = new DefaultAttribute();
 
     public DefaultCharacter() {
         super();
+
+        damage = new MultipliedDerivedAttribute(strength, 2);
+        mana = new MultipliedDerivedAttribute(intelligence, 1);
     }
 
     @Override
-    public void addAbility(final Ability ability) {
+    public final void addAbility(final Ability ability) {
         abilities.add(ability);
     }
 
     @Override
-    public Iterable<Ability> getAbilities() {
+    public final Iterable<Ability> getAbilities() {
         return Collections.unmodifiableCollection(abilities);
     }
 
     @Override
-    public Integer getAgility() {
-        return agility;
+    public final Integer getAgility() {
+        return agility.getValue();
     }
 
     @Override
-    public Integer getDamage() {
-        return getDerivedAttributes().getDamage();
+    public final Integer getDamage() {
+        return damage.getValue();
     }
 
     @Override
-    public Integer getIntelligence() {
-        return intelligence;
+    public final Integer getIntelligence() {
+        return intelligence.getValue();
     }
 
     @Override
-    public Integer getMana() {
-        return getDerivedAttributes().getMana();
+    public final Integer getMana() {
+        return mana.getValue();
     }
 
     @Override
-    public Integer getStrength() {
-        return strength;
+    public final Integer getStrength() {
+        return strength.getValue();
     }
 
     @Override
-    public void removeAbility(final Ability ability) {
+    public final void removeAbility(final Ability ability) {
         abilities.remove(ability);
     }
 
     @Override
-    public void setAgility(final Integer value) {
-        agility = value;
+    public final void setAgility(final Integer value) {
+        agility.setValue(value);
     }
 
     @Override
-    public void setIntelligence(final Integer value) {
-        intelligence = value;
+    public final void setIntelligence(final Integer value) {
+        intelligence.setValue(value);
     }
 
     @Override
-    public void setStrength(final Integer value) {
-        strength = value;
-    }
-
-    private DerivedAttributes getDerivedAttributes() {
-        return derivedAttributes;
+    public final void setStrength(final Integer value) {
+        strength.setValue(value);
     }
 
 }

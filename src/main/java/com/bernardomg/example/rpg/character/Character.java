@@ -1,11 +1,21 @@
 
 package com.bernardomg.example.rpg.character;
 
-public interface Character extends Attributes, DerivedAttributes {
+public interface Character {
 
     public void addAbility(final Ability ability);
 
     public Iterable<Ability> getAbilities();
+
+    public Integer getAgility();
+
+    public Integer getDamage();
+
+    public Integer getIntelligence();
+
+    public Integer getMana();
+
+    public Integer getStrength();
 
     public void removeAbility(final Ability ability);
 
