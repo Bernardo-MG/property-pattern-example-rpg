@@ -7,55 +7,43 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.example.rpg.character.Character;
-import com.bernardomg.example.rpg.character.DefaultCharacter;
 import com.bernardomg.example.rpg.character.attribute.DefaultStats;
+import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacter {
 
+    private final Character character;
+
     public TestDefaultCharacter() {
         super();
+
+        character = new DefaultCharacterBuilder()
+                .withAttribute(DefaultStats.STRENGTH.getKey())
+                .withMultipliedDerivedAttribute(DefaultStats.DAMAGE.getKey(),
+                        DefaultStats.STRENGTH.getKey(), 2)
+                .get();
     }
 
     @Test
-    public final void testDamage() {
-        final Character character;
-
-        character = new DefaultCharacter();
-
-        character.setAttribute(DefaultStats.STRENGTH.getKey(), 2);
+    public final void testDerived() {
+        character.setStat(DefaultStats.STRENGTH.getKey(), 2);
 
         Assertions.assertEquals((Integer) 4,
-                character.getAttribute(DefaultStats.DAMAGE.getKey()));
+                character.getStat(DefaultStats.DAMAGE.getKey()));
     }
 
     @Test
-    public final void testDamage_ChangeBase_ChangesDerived() {
-        final Character character;
-
-        character = new DefaultCharacter();
-
-        character.setAttribute(DefaultStats.STRENGTH.getKey(), 2);
+    public final void testDerived_ChangeBase_ChangesDerived() {
+        character.setStat(DefaultStats.STRENGTH.getKey(), 2);
 
         Assertions.assertEquals((Integer) 4,
-                character.getAttribute(DefaultStats.DAMAGE.getKey()));
+                character.getStat(DefaultStats.DAMAGE.getKey()));
 
-        character.setAttribute(DefaultStats.STRENGTH.getKey(), 4);
+        character.setStat(DefaultStats.STRENGTH.getKey(), 4);
 
         Assertions.assertEquals((Integer) 8,
-                character.getAttribute(DefaultStats.DAMAGE.getKey()));
-    }
-
-    @Test
-    public final void testMana() {
-        final Character character;
-
-        character = new DefaultCharacter();
-
-        character.setAttribute(DefaultStats.INTELLIGENCE.getKey(), 10);
-
-        Assertions.assertEquals((Integer) 10,
-                character.getAttribute(DefaultStats.MANA.getKey()));
+                character.getStat(DefaultStats.DAMAGE.getKey()));
     }
 
 }
