@@ -16,21 +16,20 @@ import com.bernardomg.example.rpg.character.attribute.ValueStat;
 
 public final class DefaultCharacter implements Character {
 
-    private final Collection<Ability> abilities  = new ArrayList<>();
+    private final Collection<Ability> abilities = new ArrayList<>();
 
-    private final Map<String, Stat>   attributes = new HashMap<>();
+    private final Map<String, Stat>   stats     = new HashMap<>();
 
     public DefaultCharacter() {
         super();
 
-        attributes.put(DefaultStats.DEXTERITY.getKey(), new DefaultValueStat());
-        attributes.put(DefaultStats.INTELLIGENCE.getKey(),
-                new DefaultValueStat());
-        attributes.put(DefaultStats.STRENGTH.getKey(), new DefaultValueStat());
+        stats.put(DefaultStats.DEXTERITY.getKey(), new DefaultValueStat());
+        stats.put(DefaultStats.INTELLIGENCE.getKey(), new DefaultValueStat());
+        stats.put(DefaultStats.STRENGTH.getKey(), new DefaultValueStat());
 
-        attributes.put(DefaultStats.DAMAGE.getKey(),
+        stats.put(DefaultStats.DAMAGE.getKey(),
                 new MultipliedDerivedStat(DefaultStats.STRENGTH.getKey(), 2));
-        attributes.put(DefaultStats.MANA.getKey(), new MultipliedDerivedStat(
+        stats.put(DefaultStats.MANA.getKey(), new MultipliedDerivedStat(
                 DefaultStats.INTELLIGENCE.getKey(), 1));
     }
 
@@ -40,25 +39,30 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
+    public final void addStat(final String name, final Stat value) {
+        stats.put(name, value);
+    }
+
+    @Override
     public final Iterable<Ability> getAbilities() {
         return Collections.unmodifiableCollection(abilities);
     }
 
     @Override
-    public final Integer getAttribute(final String attribute) {
+    public final Integer getStat(final String attribute) {
         final Stat stat;
         final Stat mainStat;
         final DerivedStat derived;
         final Integer value;
 
-        stat = attributes.get(attribute);
+        stat = stats.get(attribute);
 
         if (stat instanceof ValueStat) {
             value = ((ValueStat) stat).getValue();
         } else if (stat instanceof DerivedStat) {
             derived = ((DerivedStat) stat);
-            if (attributes.containsKey(derived.getAttribute())) {
-                mainStat = attributes.get(derived.getAttribute());
+            if (stats.containsKey(derived.getAttribute())) {
+                mainStat = stats.get(derived.getAttribute());
                 value = ((DerivedStat) stat).getValue(mainStat);
             } else {
                 value = 0;
@@ -71,8 +75,8 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final Boolean hasAttribute(final String attribute) {
-        return attributes.containsKey(attribute);
+    public final Boolean hasStat(final String attribute) {
+        return stats.containsKey(attribute);
     }
 
     @Override
@@ -81,11 +85,10 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final void setAttribute(final String attribute,
-            final Integer value) {
+    public final void setStat(final String attribute, final Integer value) {
         final Stat stat;
 
-        stat = attributes.get(attribute);
+        stat = stats.get(attribute);
 
         if (stat instanceof ValueStat) {
             ((ValueStat) stat).setValue(value);
