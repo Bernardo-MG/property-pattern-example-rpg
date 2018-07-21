@@ -19,6 +19,7 @@ Role-Playing Games](http://legendaryquest.netfirms.com/books/RPG_Design_Patterns
 
 ## Features
 
+- Property object design pattern
 - Attributes and derived attributes
 
 ## Documentation
