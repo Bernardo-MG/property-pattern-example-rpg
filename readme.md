@@ -9,6 +9,7 @@ Some references used when creating the example:
 Role-Playing Games](http://legendaryquest.netfirms.com/books/RPG_Design_Patterns_9_13_09.pdf)
 * [Using the Composite Design Pattern for an RPG Attributes System](https://gamedevelopment.tutsplus.com/tutorials/using-the-composite-design-pattern-for-an-rpg-attributes-system--gamedev-243)
 * [How to Make an RPG: Stats](http://howtomakeanrpg.com/a/how-to-make-an-rpg-stats.html)
+* [Property Design Pattern](https://github.com/iluwatar/java-design-patterns/tree/master/property)
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
