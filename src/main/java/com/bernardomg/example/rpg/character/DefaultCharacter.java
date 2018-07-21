@@ -27,17 +27,12 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final void addStat(final String name, final Stat value) {
-        stats.put(name, value);
-    }
-
-    @Override
     public final Iterable<Ability> getAbilities() {
         return Collections.unmodifiableCollection(abilities);
     }
 
     @Override
-    public final Integer getStat(final String attribute) {
+    public final Integer getStatValue(final String attribute) {
         final Stat stat;
         final Stat mainStat;
         final DerivedStat derived;
@@ -73,7 +68,12 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final void setStat(final String attribute, final Integer value) {
+    public final void setStat(final String name, final Stat value) {
+        stats.put(name, value);
+    }
+
+    @Override
+    public final void setStatValue(final String attribute, final Integer value) {
         final Stat stat;
 
         stat = stats.get(attribute);

@@ -23,7 +23,7 @@ public final class DefaultCharacterBuilder implements CharacterBuilder {
 
     @Override
     public final CharacterBuilder withAttribute(final String name) {
-        character.addStat(name, new DefaultValueStat());
+        character.setStat(name, new DefaultValueStat());
 
         return this;
     }
@@ -31,7 +31,7 @@ public final class DefaultCharacterBuilder implements CharacterBuilder {
     @Override
     public final CharacterBuilder withMultipliedDerivedAttribute(
             final String name, final String root, final Integer mult) {
-        character.addStat(name, new MultipliedDerivedStat(root, mult));
+        character.setStat(name, new MultipliedDerivedStat(root, mult));
 
         return this;
     }
