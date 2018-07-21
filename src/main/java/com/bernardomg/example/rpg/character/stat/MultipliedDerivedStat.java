@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.rpg.character.attribute;
+package com.bernardomg.example.rpg.character.stat;
 
 public final class MultipliedDerivedStat implements DerivedStat {
 
@@ -15,8 +15,8 @@ public final class MultipliedDerivedStat implements DerivedStat {
     }
 
     @Override
-    public final String getAttribute() {
-        return wrappedStat.getAttribute();
+    public final String getStat() {
+        return wrappedStat.getStat();
     }
 
     @Override

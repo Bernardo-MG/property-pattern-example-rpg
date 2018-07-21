@@ -3,8 +3,8 @@ package com.bernardomg.example.rpg.character.builder;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.DefaultCharacter;
-import com.bernardomg.example.rpg.character.attribute.DefaultValueStat;
-import com.bernardomg.example.rpg.character.attribute.MultipliedDerivedStat;
+import com.bernardomg.example.rpg.character.stat.DefaultValueStat;
+import com.bernardomg.example.rpg.character.stat.MultipliedDerivedStat;
 
 public final class DefaultCharacterBuilder implements CharacterBuilder {
 

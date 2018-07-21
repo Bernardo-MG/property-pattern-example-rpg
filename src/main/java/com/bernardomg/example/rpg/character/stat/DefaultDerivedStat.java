@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.rpg.character.attribute;
+package com.bernardomg.example.rpg.character.stat;
 
 import java.util.function.Function;
 
@@ -18,7 +18,7 @@ public final class DefaultDerivedStat implements DerivedStat {
     }
 
     @Override
-    public final String getAttribute() {
+    public final String getStat() {
         return attribute;
     }
 

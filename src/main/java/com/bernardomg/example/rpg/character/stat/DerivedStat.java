@@ -1,9 +1,9 @@
 
-package com.bernardomg.example.rpg.character.attribute;
+package com.bernardomg.example.rpg.character.stat;
 
 public interface DerivedStat extends Stat {
 
-    public String getAttribute();
+    public String getStat();
 
     public Integer getValue(final Stat stat);
 

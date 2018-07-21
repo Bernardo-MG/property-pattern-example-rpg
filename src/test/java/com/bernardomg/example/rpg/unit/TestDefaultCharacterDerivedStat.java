@@ -7,9 +7,9 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.example.rpg.character.Character;
-import com.bernardomg.example.rpg.character.attribute.DefaultStats;
-import com.bernardomg.example.rpg.character.attribute.MultipliedDerivedStat;
 import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
+import com.bernardomg.example.rpg.character.stat.DefaultStats;
+import com.bernardomg.example.rpg.character.stat.MultipliedDerivedStat;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterDerivedStat {
