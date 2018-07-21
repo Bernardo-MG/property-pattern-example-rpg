@@ -4,6 +4,8 @@ package com.bernardomg.example.rpg.character;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.bernardomg.example.rpg.character.attribute.Attribute;
 import com.bernardomg.example.rpg.character.attribute.DefaultAttribute;
@@ -11,23 +13,21 @@ import com.bernardomg.example.rpg.character.attribute.MultipliedDerivedAttribute
 
 public final class DefaultCharacter implements Character {
 
-    private final Collection<Ability> abilities    = new ArrayList<>();
+    private final Collection<Ability>    abilities  = new ArrayList<>();
 
-    private final Attribute           agility      = new DefaultAttribute();
-
-    private final Attribute           damage;
-
-    private final Attribute           intelligence = new DefaultAttribute();
-
-    private final Attribute           mana;
-
-    private final Attribute           strength     = new DefaultAttribute();
+    private final Map<String, Attribute> attributes = new HashMap<>();
 
     public DefaultCharacter() {
         super();
 
-        damage = new MultipliedDerivedAttribute(strength, 2);
-        mana = new MultipliedDerivedAttribute(intelligence, 1);
+        attributes.put("agility", new DefaultAttribute());
+        attributes.put("intelligence", new DefaultAttribute());
+        attributes.put("strength", new DefaultAttribute());
+
+        attributes.put("damage",
+                new MultipliedDerivedAttribute(attributes.get("strength"), 2));
+        attributes.put("mana", new MultipliedDerivedAttribute(
+                attributes.get("intelligence"), 1));
     }
 
     @Override
@@ -41,28 +41,13 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final Integer getAgility() {
-        return agility.getValue();
+    public final Integer getAttribute(final String attribute) {
+        return attributes.get(attribute).getValue();
     }
 
     @Override
-    public final Integer getDamage() {
-        return damage.getValue();
-    }
-
-    @Override
-    public final Integer getIntelligence() {
-        return intelligence.getValue();
-    }
-
-    @Override
-    public final Integer getMana() {
-        return mana.getValue();
-    }
-
-    @Override
-    public final Integer getStrength() {
-        return strength.getValue();
+    public final Boolean hasAttribute(final String attribute) {
+        return attributes.containsKey(attribute);
     }
 
     @Override
@@ -71,18 +56,9 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final void setAgility(final Integer value) {
-        agility.setValue(value);
-    }
-
-    @Override
-    public final void setIntelligence(final Integer value) {
-        intelligence.setValue(value);
-    }
-
-    @Override
-    public final void setStrength(final Integer value) {
-        strength.setValue(value);
+    public final void setAttribute(final String attribute,
+            final Integer value) {
+        attributes.get(attribute).setValue(value);
     }
 
 }

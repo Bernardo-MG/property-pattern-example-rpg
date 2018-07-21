@@ -7,22 +7,12 @@ public interface Character {
 
     public Iterable<Ability> getAbilities();
 
-    public Integer getAgility();
+    public Integer getAttribute(final String attribute);
 
-    public Integer getDamage();
-
-    public Integer getIntelligence();
-
-    public Integer getMana();
-
-    public Integer getStrength();
+    public Boolean hasAttribute(final String attribute);
 
     public void removeAbility(final Ability ability);
 
-    public void setAgility(final Integer value);
-
-    public void setIntelligence(final Integer value);
-
-    public void setStrength(final Integer value);
+    public void setAttribute(final String attribute, final Integer value);
 
 }
