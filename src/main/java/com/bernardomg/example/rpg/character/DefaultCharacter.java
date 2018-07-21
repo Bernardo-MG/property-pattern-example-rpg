@@ -7,10 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.bernardomg.example.rpg.character.attribute.DefaultStats;
-import com.bernardomg.example.rpg.character.attribute.DefaultValueStat;
 import com.bernardomg.example.rpg.character.attribute.DerivedStat;
-import com.bernardomg.example.rpg.character.attribute.MultipliedDerivedStat;
 import com.bernardomg.example.rpg.character.attribute.Stat;
 import com.bernardomg.example.rpg.character.attribute.ValueStat;
 
@@ -22,15 +19,6 @@ public final class DefaultCharacter implements Character {
 
     public DefaultCharacter() {
         super();
-
-        stats.put(DefaultStats.DEXTERITY.getKey(), new DefaultValueStat());
-        stats.put(DefaultStats.INTELLIGENCE.getKey(), new DefaultValueStat());
-        stats.put(DefaultStats.STRENGTH.getKey(), new DefaultValueStat());
-
-        stats.put(DefaultStats.DAMAGE.getKey(),
-                new MultipliedDerivedStat(DefaultStats.STRENGTH.getKey(), 2));
-        stats.put(DefaultStats.MANA.getKey(), new MultipliedDerivedStat(
-                DefaultStats.INTELLIGENCE.getKey(), 1));
     }
 
     @Override
