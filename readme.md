@@ -1,9 +1,15 @@
-# Property Pattern Example - RPG
+# RPG Patterns Example
 
-Shows how to make use of the property pattern, using a RPG character as an example. This character will receive bonus and malus which will affect his stats.
+An example making use of design patterns to model a RPG character.
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.example/property-pattern-example-rpg.svg)][maven-repo]
-[![Bintray](https://api.bintray.com/packages/bernardo-mg/maven/property-pattern-example-rpg/images/download.svg)][bintray-repo]
+Some references used when creating the example:
+
+* [Game Programming Patterns](http://gameprogrammingpatterns.com)
+* [Design Patterns of Successful
+Role-Playing Games](http://legendaryquest.netfirms.com/books/RPG_Design_Patterns_9_13_09.pdf)
+* [Using the Composite Design Pattern for an RPG Attributes System](https://gamedevelopment.tutsplus.com/tutorials/using-the-composite-design-pattern-for-an-rpg-attributes-system--gamedev-243)
+* [How to Make an RPG: Stats](http://howtomakeanrpg.com/a/how-to-make-an-rpg-stats.html)
+* [Property Design Pattern](https://github.com/iluwatar/java-design-patterns/tree/master/property)
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
@@ -13,7 +19,8 @@ Shows how to make use of the property pattern, using a RPG character as an examp
 
 ## Features
 
-- Property pattern usage
+- Property object design pattern
+- Attributes and derived attributes
 
 ## Documentation
 
@@ -51,16 +58,6 @@ The project has been tested on the following Java versions:
 
 All other dependencies are handled through Maven, and noted in the included POM file.
 
-### Installing
-
-The recommended way to install the project is by setting it up as a dependency. To get the configuration information for this check the [Bintray repository][bintray-repo], or the [Maven Central Repository][maven-repo].
-
-It is always possible installing it by using the usual Maven command:
-
-```
-$ mvn install
-```
-
 ## Collaborate
 
 Any kind of help with the project will be well received, and there are two main ways to give such help:
@@ -80,12 +77,10 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under the [MIT License][license].
 
-[bintray-repo]: https://bintray.com/bernardo-mg/maven/property-pattern-example-rpg/view
-[maven-repo]: http://mvnrepository.com/artifact/com.bernardomg.example/property-pattern-example-rpg
-[issues]: https://github.com/bernardo-mg/property-pattern-example-rpg/issues
-[javadoc-develop]: https://docs.bernardomg.com/development/maven/property-pattern-example-rpg/property-pattern-example-rpg/apidocs
-[javadoc-release]: https://docs.bernardomg.com/maven/property-pattern-example-rpg/property-pattern-example-rpg/apidocs
+[issues]: https://github.com/bernardo-mg/rpg-patterns-example/issues
+[javadoc-develop]: https://docs.bernardomg.com/development/maven/rpg-patterns-example/apidocs
+[javadoc-release]: https://docs.bernardomg.com/maven/rpg-patterns-example/apidocs
 [license]: http://www.opensource.org/licenses/mit-license.php
-[scm]: https://github.com/bernardo-mg/property-pattern-example-rpg
-[site-develop]: https://docs.bernardomg.com/development/maven/property-pattern-example-rpg/property-pattern-example-rpg
-[site-release]: https://docs.bernardomg.com/maven/property-pattern-example-rpg/property-pattern-example-rpg
+[scm]: https://github.com/bernardo-mg/rpg-patterns-example
+[site-develop]: https://docs.bernardomg.com/development/maven/rpg-patterns-example
+[site-release]: https://docs.bernardomg.com/maven/rpg-patterns-example
