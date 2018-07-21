@@ -17,7 +17,7 @@ public final class TestDefaultCharacter {
     }
 
     @Test
-    private final void testDamage() {
+    public final void testDamage() {
         final Character character;
 
         character = new DefaultCharacter();
@@ -28,7 +28,22 @@ public final class TestDefaultCharacter {
     }
 
     @Test
-    private final void testMana() {
+    public final void testDamage_ChangeBase_ChangesDerived() {
+        final Character character;
+
+        character = new DefaultCharacter();
+
+        character.setStrength(2);
+
+        Assertions.assertEquals((Integer) 4, character.getDamage());
+
+        character.setStrength(4);
+
+        Assertions.assertEquals((Integer) 8, character.getDamage());
+    }
+
+    @Test
+    public final void testMana() {
         final Character character;
 
         character = new DefaultCharacter();
