@@ -4,15 +4,19 @@ package com.bernardomg.example.rpg.character;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+
+import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.stat.Stat;
 import com.bernardomg.example.rpg.character.stat.store.DefaultStatStore;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
 
 public final class DefaultCharacter implements Character {
 
-    private final Collection<Ability> abilities = new ArrayList<>();
+    private final Collection<Ability>   abilities = new ArrayList<>();
 
-    private final StatStore           statStore = new DefaultStatStore();
+    private final Collection<Equipment> equipment = new ArrayList<>();
+
+    private final StatStore             statStore = new DefaultStatStore();
 
     public DefaultCharacter() {
         super();
@@ -24,13 +28,35 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
+    public final void addEquipment(final Equipment item) {
+        equipment.add(item);
+    }
+
+    @Override
     public final Iterable<Ability> getAbilities() {
         return Collections.unmodifiableCollection(abilities);
     }
 
     @Override
+    public final Iterable<Equipment> getEquipment() {
+        return Collections.unmodifiableCollection(equipment);
+    }
+
+    @Override
+    public final Collection<String> getStatNames() {
+        return statStore.getStatNames();
+    }
+
+    @Override
     public final Integer getStatValue(final String stat) {
-        return statStore.getStatValue(stat);
+        final Integer baseVal;
+        final Integer itemVal;
+
+        baseVal = statStore.getStatValue(stat);
+        itemVal = equipment.stream().filter((e) -> e.hasStat(stat))
+                .map((e) -> e.getStatValue(stat)).reduce(0, (a, b) -> a + b);
+
+        return baseVal + itemVal;
     }
 
     @Override
@@ -44,7 +70,12 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public void removeStat(final String stat) {
+    public final void removeEquipment(final Equipment item) {
+        equipment.remove(item);
+    }
+
+    @Override
+    public final void removeStat(final String stat) {
         statStore.removeStat(stat);
     }
 

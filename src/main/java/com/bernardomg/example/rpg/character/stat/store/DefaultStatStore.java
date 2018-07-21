@@ -1,6 +1,8 @@
 
 package com.bernardomg.example.rpg.character.stat.store;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +16,11 @@ public final class DefaultStatStore implements StatStore {
 
     public DefaultStatStore() {
         super();
+    }
+
+    @Override
+    public final Collection<String> getStatNames() {
+        return Collections.unmodifiableCollection(stats.keySet());
     }
 
     @Override
