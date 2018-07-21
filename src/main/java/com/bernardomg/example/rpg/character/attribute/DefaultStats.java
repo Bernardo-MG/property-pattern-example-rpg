@@ -1,7 +1,7 @@
 
 package com.bernardomg.example.rpg.character.attribute;
 
-public enum Stats {
+public enum DefaultStats {
 
     DAMAGE("damage"),
     DEXTERITY("dexterity"),
@@ -11,7 +11,7 @@ public enum Stats {
 
     private final String key;
 
-    private Stats(final String k) {
+    private DefaultStats(final String k) {
         key = k;
     }
 

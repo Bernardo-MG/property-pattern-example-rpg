@@ -1,11 +1,11 @@
 
 package com.bernardomg.example.rpg.character.attribute;
 
-public final class DefaultAttribute implements Attribute {
+public final class DefaultValueStat implements ValueStat {
 
     private Integer value;
 
-    public DefaultAttribute() {
+    public DefaultValueStat() {
         super();
     }
 

@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.DefaultCharacter;
-import com.bernardomg.example.rpg.character.attribute.Stats;
+import com.bernardomg.example.rpg.character.attribute.DefaultStats;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacter {
@@ -23,10 +23,10 @@ public final class TestDefaultCharacter {
 
         character = new DefaultCharacter();
 
-        character.setAttribute(Stats.STRENGTH.getKey(), 2);
+        character.setAttribute(DefaultStats.STRENGTH.getKey(), 2);
 
         Assertions.assertEquals((Integer) 4,
-                character.getAttribute(Stats.DAMAGE.getKey()));
+                character.getAttribute(DefaultStats.DAMAGE.getKey()));
     }
 
     @Test
@@ -35,15 +35,15 @@ public final class TestDefaultCharacter {
 
         character = new DefaultCharacter();
 
-        character.setAttribute(Stats.STRENGTH.getKey(), 2);
+        character.setAttribute(DefaultStats.STRENGTH.getKey(), 2);
 
         Assertions.assertEquals((Integer) 4,
-                character.getAttribute(Stats.DAMAGE.getKey()));
+                character.getAttribute(DefaultStats.DAMAGE.getKey()));
 
-        character.setAttribute(Stats.STRENGTH.getKey(), 4);
+        character.setAttribute(DefaultStats.STRENGTH.getKey(), 4);
 
         Assertions.assertEquals((Integer) 8,
-                character.getAttribute(Stats.DAMAGE.getKey()));
+                character.getAttribute(DefaultStats.DAMAGE.getKey()));
     }
 
     @Test
@@ -52,10 +52,10 @@ public final class TestDefaultCharacter {
 
         character = new DefaultCharacter();
 
-        character.setAttribute(Stats.INTELLIGENCE.getKey(), 10);
+        character.setAttribute(DefaultStats.INTELLIGENCE.getKey(), 10);
 
         Assertions.assertEquals((Integer) 10,
-                character.getAttribute(Stats.MANA.getKey()));
+                character.getAttribute(DefaultStats.MANA.getKey()));
     }
 
 }

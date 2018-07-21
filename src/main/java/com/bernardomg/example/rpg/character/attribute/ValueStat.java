@@ -1,7 +1,7 @@
 
 package com.bernardomg.example.rpg.character.attribute;
 
-public interface Attribute {
+public interface ValueStat extends Stat {
 
     public Integer getValue();
 
