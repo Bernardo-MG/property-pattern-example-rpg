@@ -14,7 +14,7 @@ public final class DefaultAbility implements Ability {
     public DefaultAbility(final String abilityName) {
         super();
 
-        this.name = abilityName;
+        name = abilityName;
     }
 
     @Override
