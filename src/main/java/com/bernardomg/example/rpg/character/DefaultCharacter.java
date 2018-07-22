@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
+import com.bernardomg.example.rpg.character.ability.Ability;
 import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.character.stat.Stat;

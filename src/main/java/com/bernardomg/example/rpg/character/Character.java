@@ -1,6 +1,7 @@
 
 package com.bernardomg.example.rpg.character;
 
+import com.bernardomg.example.rpg.character.ability.Ability;
 import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
