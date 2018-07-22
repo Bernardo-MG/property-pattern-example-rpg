@@ -17,7 +17,9 @@ public final class TestDefaultCharacterItemStat {
 
     private final Character character;
 
-    private final Equipment equipment;
+    private final Equipment swordBig;
+
+    private final Equipment swordSmall;
 
     public TestDefaultCharacterItemStat() {
         super();
@@ -28,14 +30,26 @@ public final class TestDefaultCharacterItemStat {
                         DefaultStats.STRENGTH.getKey(), 2)
                 .withItemSlot(DefaultItemSlots.LEFT_HAND.getKey()).get();
 
-        equipment = new DefaultItemBuilder().equipment()
+        swordSmall = new DefaultItemBuilder().equipment()
                 .withAttribute(DefaultStats.DAMAGE.getKey(), 5).get();
+        swordBig = new DefaultItemBuilder().equipment()
+                .withAttribute(DefaultStats.DAMAGE.getKey(), 10).get();
+    }
+
+    @Test
+    public final void testDerived_ReplaceEquipment() {
+        character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
+        character.addEquipment(DefaultItemSlots.LEFT_HAND.getKey(), swordSmall);
+        character.addEquipment(DefaultItemSlots.LEFT_HAND.getKey(), swordBig);
+
+        Assertions.assertEquals((Integer) 14,
+                character.getStatValue(DefaultStats.DAMAGE.getKey()));
     }
 
     @Test
     public final void testDerived_WithEquipment() {
         character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
-        character.addEquipment(DefaultItemSlots.LEFT_HAND.getKey(), equipment);
+        character.addEquipment(DefaultItemSlots.LEFT_HAND.getKey(), swordSmall);
 
         Assertions.assertEquals((Integer) 9,
                 character.getStatValue(DefaultStats.DAMAGE.getKey()));
