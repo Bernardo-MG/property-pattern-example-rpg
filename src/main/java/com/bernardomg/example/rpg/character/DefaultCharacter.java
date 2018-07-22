@@ -35,7 +35,7 @@ public final class DefaultCharacter implements Character {
         abilities.add(ability);
 
         ability.getProperties().stream()
-                .forEach((p) -> propertyTransformer.apply(p, this));
+                .forEach((p) -> propertyTransformer.apply(p, statStore));
     }
 
     @Override
@@ -94,7 +94,7 @@ public final class DefaultCharacter implements Character {
         abilities.remove(ability);
 
         ability.getProperties().stream()
-                .forEach((p) -> propertyTransformer.undo(p, this));
+                .forEach((p) -> propertyTransformer.undo(p, statStore));
     }
 
     @Override
