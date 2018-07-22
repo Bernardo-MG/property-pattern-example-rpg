@@ -9,6 +9,8 @@ public interface CharacterBuilder {
 
     public CharacterBuilder withAttribute(final String name);
 
+    public CharacterBuilder withItemSlot(final String name);
+
     public CharacterBuilder withMultipliedDerivedAttribute(final String name,
             final String root, final Integer mult);
 

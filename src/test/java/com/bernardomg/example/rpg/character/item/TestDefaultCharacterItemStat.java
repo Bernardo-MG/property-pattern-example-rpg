@@ -8,8 +8,9 @@ import org.junit.runner.RunWith;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
+import com.bernardomg.example.rpg.character.constants.DefaultItemSlots;
+import com.bernardomg.example.rpg.character.constants.DefaultStats;
 import com.bernardomg.example.rpg.character.item.builder.DefaultItemBuilder;
-import com.bernardomg.example.rpg.character.stat.DefaultStats;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterItemStat {
@@ -25,7 +26,7 @@ public final class TestDefaultCharacterItemStat {
                 .withAttribute(DefaultStats.STRENGTH.getKey())
                 .withMultipliedDerivedAttribute(DefaultStats.DAMAGE.getKey(),
                         DefaultStats.STRENGTH.getKey(), 2)
-                .get();
+                .withItemSlot(DefaultItemSlots.LEFT_HAND.getKey()).get();
 
         equipment = new DefaultItemBuilder().equipment()
                 .withAttribute(DefaultStats.DAMAGE.getKey(), 5).get();
@@ -34,7 +35,7 @@ public final class TestDefaultCharacterItemStat {
     @Test
     public final void testDerived_WithEquipment() {
         character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
-        character.addEquipment(equipment);
+        character.addEquipment(DefaultItemSlots.LEFT_HAND.getKey(), equipment);
 
         Assertions.assertEquals((Integer) 9,
                 character.getStatValue(DefaultStats.DAMAGE.getKey()));

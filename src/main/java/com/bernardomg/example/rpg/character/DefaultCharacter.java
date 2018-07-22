@@ -4,19 +4,21 @@ package com.bernardomg.example.rpg.character;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 import com.bernardomg.example.rpg.character.item.Equipment;
+import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.character.stat.Stat;
 import com.bernardomg.example.rpg.character.stat.store.DefaultStatStore;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
 
 public final class DefaultCharacter implements Character {
 
-    private final Collection<Ability>   abilities = new ArrayList<>();
+    private final Collection<Ability>  abilities = new ArrayList<>();
 
-    private final Collection<Equipment> equipment = new ArrayList<>();
+    private final Collection<ItemSlot> equipment = new ArrayList<>();
 
-    private final StatStore             statStore = new DefaultStatStore();
+    private final StatStore            statStore = new DefaultStatStore();
 
     public DefaultCharacter() {
         super();
@@ -28,8 +30,21 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final void addEquipment(final Equipment item) {
-        equipment.add(item);
+    public final void addEquipment(final String slot, final Equipment item) {
+        final Optional<ItemSlot> foundSlot;
+        final ItemSlot itemSlot;
+
+        foundSlot = equipment.stream().filter((s) -> s.getName().equals(slot))
+                .findFirst();
+        if (foundSlot.isPresent()) {
+            itemSlot = foundSlot.get();
+            itemSlot.setItem(item);
+        }
+    }
+
+    @Override
+    public final void addItemSlot(final ItemSlot slot) {
+        equipment.add(slot);
     }
 
     @Override
@@ -38,7 +53,7 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final Iterable<Equipment> getEquipment() {
+    public final Iterable<ItemSlot> getItemSlots() {
         return Collections.unmodifiableCollection(equipment);
     }
 
@@ -53,8 +68,9 @@ public final class DefaultCharacter implements Character {
         final Integer itemVal;
 
         baseVal = statStore.getStatValue(stat);
-        itemVal = equipment.stream().filter((e) -> e.hasStat(stat))
-                .map((e) -> e.getStatValue(stat)).reduce(0, (a, b) -> a + b);
+        itemVal = equipment.stream().map(ItemSlot::getItem)
+                .filter((e) -> e.hasStat(stat)).map((e) -> e.getStatValue(stat))
+                .reduce(0, (a, b) -> a + b);
 
         return baseVal + itemVal;
     }
@@ -70,8 +86,22 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final void removeEquipment(final Equipment item) {
-        equipment.remove(item);
+    public final void removeEquipment(final String slot) {
+        final Optional<ItemSlot> foundSlot;
+        final ItemSlot itemSlot;
+
+        foundSlot = equipment.stream().filter((s) -> s.getName().equals(slot))
+                .findFirst();
+        if (foundSlot.isPresent()) {
+            itemSlot = foundSlot.get();
+            // TODO: Avoid null
+            itemSlot.setItem(null);
+        }
+    }
+
+    @Override
+    public final void removeItemSlot(final ItemSlot slot) {
+        equipment.remove(slot);
     }
 
     @Override

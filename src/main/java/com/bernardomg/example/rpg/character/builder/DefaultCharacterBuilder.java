@@ -3,6 +3,7 @@ package com.bernardomg.example.rpg.character.builder;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.DefaultCharacter;
+import com.bernardomg.example.rpg.character.slot.item.DefaultItemSlot;
 import com.bernardomg.example.rpg.character.stat.DefaultValueStat;
 import com.bernardomg.example.rpg.character.stat.MultipliedDerivedStat;
 
@@ -24,6 +25,13 @@ public final class DefaultCharacterBuilder implements CharacterBuilder {
     @Override
     public final CharacterBuilder withAttribute(final String name) {
         character.setStat(name, new DefaultValueStat());
+
+        return this;
+    }
+
+    @Override
+    public CharacterBuilder withItemSlot(final String name) {
+        character.addItemSlot(new DefaultItemSlot(name));
 
         return this;
     }

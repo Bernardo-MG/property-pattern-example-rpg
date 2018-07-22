@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
+import com.bernardomg.example.rpg.character.constants.DefaultStats;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterDerivedStat {
