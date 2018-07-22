@@ -9,6 +9,7 @@ import com.bernardomg.example.rpg.character.property.PropertyExecutor;
 import com.bernardomg.example.rpg.character.slot.item.DefaultItemSlot;
 import com.bernardomg.example.rpg.character.stat.DefaultValueStat;
 import com.bernardomg.example.rpg.character.stat.MultipliedDerivedStat;
+import com.bernardomg.example.rpg.character.stat.store.StatStore;
 
 public final class DefaultCharacterBuilder implements CharacterBuilder {
 
@@ -29,7 +30,7 @@ public final class DefaultCharacterBuilder implements CharacterBuilder {
 
     @Override
     public final CharacterBuilder registerProperty(final String property,
-            final Command<Character> function) {
+            final Command<StatStore> function) {
         propertyTransformer.addFunction(property, function);
 
         return this;

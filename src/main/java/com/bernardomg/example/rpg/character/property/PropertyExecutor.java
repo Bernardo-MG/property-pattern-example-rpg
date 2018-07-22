@@ -1,15 +1,15 @@
 
 package com.bernardomg.example.rpg.character.property;
 
-import com.bernardomg.example.rpg.character.Character;
+import com.bernardomg.example.rpg.character.stat.store.StatStore;
 
 public interface PropertyExecutor {
 
     public void addFunction(final String property,
-            final Command<Character> function);
+            final Command<StatStore> function);
 
-    public void apply(final String property, final Character character);
+    public void apply(final String property, final StatStore character);
 
-    public void undo(final String property, final Character character);
+    public void undo(final String property, final StatStore character);
 
 }

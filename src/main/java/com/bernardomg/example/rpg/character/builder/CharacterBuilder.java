@@ -3,13 +3,14 @@ package com.bernardomg.example.rpg.character.builder;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.property.Command;
+import com.bernardomg.example.rpg.character.stat.store.StatStore;
 
 public interface CharacterBuilder {
 
     public Character get();
 
     public CharacterBuilder registerProperty(final String property,
-            final Command<Character> function);
+            final Command<StatStore> function);
 
     public CharacterBuilder withAttribute(final String name);
 
