@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.rpg.character.item;
+package com.bernardomg.example.rpg.character.unit.item;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,6 +10,7 @@ import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
 import com.bernardomg.example.rpg.character.constants.DefaultItemSlots;
 import com.bernardomg.example.rpg.character.constants.DefaultStats;
+import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.item.builder.DefaultItemBuilder;
 
 @RunWith(JUnitPlatform.class)
