@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import com.bernardomg.example.rpg.character.ability.Ability;
 import com.bernardomg.example.rpg.character.item.Equipment;
-import com.bernardomg.example.rpg.character.property.PropertyTransformer;
+import com.bernardomg.example.rpg.character.property.PropertyExecutor;
 import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.character.stat.Stat;
 import com.bernardomg.example.rpg.character.stat.store.DefaultStatStore;
@@ -20,11 +20,11 @@ public final class DefaultCharacter implements Character {
 
     private final Collection<ItemSlot> equipment = new ArrayList<>();
 
-    private final PropertyTransformer  propertyTransformer;
+    private final PropertyExecutor     propertyTransformer;
 
     private final StatStore            statStore = new DefaultStatStore();
 
-    public DefaultCharacter(final PropertyTransformer propTransformer) {
+    public DefaultCharacter(final PropertyExecutor propTransformer) {
         super();
 
         propertyTransformer = propTransformer;
@@ -92,6 +92,9 @@ public final class DefaultCharacter implements Character {
     @Override
     public final void removeAbility(final Ability ability) {
         abilities.remove(ability);
+
+        ability.getProperties().stream()
+                .forEach((p) -> propertyTransformer.undo(p, this));
     }
 
     @Override

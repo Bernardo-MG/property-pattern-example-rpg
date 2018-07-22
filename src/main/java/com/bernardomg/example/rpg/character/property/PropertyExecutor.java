@@ -1,15 +1,15 @@
 
 package com.bernardomg.example.rpg.character.property;
 
-import java.util.function.Consumer;
-
 import com.bernardomg.example.rpg.character.Character;
 
-public interface PropertyTransformer {
+public interface PropertyExecutor {
 
     public void addFunction(final String property,
-            final Consumer<Character> function);
+            final Command<Character> function);
 
     public void apply(final String property, final Character character);
+
+    public void undo(final String property, final Character character);
 
 }

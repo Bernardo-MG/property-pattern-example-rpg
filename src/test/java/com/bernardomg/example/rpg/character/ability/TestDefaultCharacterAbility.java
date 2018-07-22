@@ -10,7 +10,7 @@ import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
 import com.bernardomg.example.rpg.character.constants.DefaultAbilities;
 import com.bernardomg.example.rpg.character.constants.DefaultStats;
-import com.bernardomg.example.rpg.character.property.MagicDamagePropertyFunction;
+import com.bernardomg.example.rpg.character.property.MagicDamageStatCommand;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterAbility {
@@ -28,7 +28,7 @@ public final class TestDefaultCharacterAbility {
                 .withMultipliedDerivedAttribute(DefaultStats.DAMAGE.getKey(),
                         DefaultStats.STRENGTH.getKey(), 2)
                 .registerProperty(DefaultAbilities.MAGIC_DAMAGE.getKey(),
-                        new MagicDamagePropertyFunction())
+                        new MagicDamageStatCommand())
                 .get();
 
         magicDamageAbility = new DefaultAbility(
@@ -41,12 +41,22 @@ public final class TestDefaultCharacterAbility {
         character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
         character.setStatValue(DefaultStats.INTELLIGENCE.getKey(), 5);
 
-        Assertions.assertEquals((Integer) 4,
-                character.getStatValue(DefaultStats.DAMAGE.getKey()));
-
         character.addAbility(magicDamageAbility);
 
         Assertions.assertEquals((Integer) 10,
+                character.getStatValue(DefaultStats.DAMAGE.getKey()));
+    }
+
+    @Test
+    public final void testDerived_RemoveAbility_DerivedRecovered() {
+        character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
+        character.setStatValue(DefaultStats.INTELLIGENCE.getKey(), 5);
+
+        character.addAbility(magicDamageAbility);
+
+        character.removeAbility(magicDamageAbility);
+
+        Assertions.assertEquals((Integer) 4,
                 character.getStatValue(DefaultStats.DAMAGE.getKey()));
     }
 

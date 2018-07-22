@@ -1,16 +1,15 @@
 
 package com.bernardomg.example.rpg.character.builder;
 
-import java.util.function.Consumer;
-
 import com.bernardomg.example.rpg.character.Character;
+import com.bernardomg.example.rpg.character.property.Command;
 
 public interface CharacterBuilder {
 
     public Character get();
 
     public CharacterBuilder registerProperty(final String property,
-            final Consumer<Character> function);
+            final Command<Character> function);
 
     public CharacterBuilder withAttribute(final String name);
 
