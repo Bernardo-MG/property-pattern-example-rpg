@@ -1,6 +1,8 @@
 
 package com.bernardomg.example.rpg.character.unit.item;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -35,20 +37,17 @@ public final class TestDefaultCharacterItemSlot {
                 .withItemSlot(DefaultItemSlots.OFF_HAND.getKey()).get();
 
         swordSmall = new DefaultItemBuilder().equipment()
+                .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
+                        DefaultItemSlots.OFF_HAND.getKey()))
                 .withAttribute(DefaultStats.DAMAGE.getKey(), 5).get();
         swordBig = new DefaultItemBuilder().equipment()
+                .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
+                        DefaultItemSlots.OFF_HAND.getKey()))
                 .withAttribute(DefaultStats.DAMAGE.getKey(), 10).get();
         twoHanded = new DefaultItemBuilder().equipment()
+                .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
+                        DefaultItemSlots.OFF_HAND.getKey()))
                 .withAttribute(DefaultStats.DAMAGE.getKey(), 10).get();
-    }
-
-    @Test
-    public final void testSlot_ReplaceEquipment() {
-        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordSmall);
-        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordBig);
-
-        Assertions.assertEquals(swordBig,
-                character.getEquipment(DefaultItemSlots.MAIN_HAND.getKey()));
     }
 
     @Test
@@ -60,6 +59,23 @@ public final class TestDefaultCharacterItemSlot {
                 character.getEquipment(DefaultItemSlots.MAIN_HAND.getKey()));
         Assertions.assertEquals(swordBig,
                 character.getEquipment(DefaultItemSlots.OFF_HAND.getKey()));
+    }
+
+    @Test
+    public final void testSlot_InvalidSlot() {
+        character.addEquipment(DefaultItemSlots.ARMOR.getKey(), swordSmall);
+
+        Assertions.assertNull(
+                character.getEquipment(DefaultItemSlots.ARMOR.getKey()));
+    }
+
+    @Test
+    public final void testSlot_ReplaceEquipment() {
+        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordSmall);
+        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordBig);
+
+        Assertions.assertEquals(swordBig,
+                character.getEquipment(DefaultItemSlots.MAIN_HAND.getKey()));
     }
 
     @Test

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 import com.bernardomg.example.rpg.character.ability.Ability;
 import com.bernardomg.example.rpg.character.item.Equipment;
@@ -42,12 +43,19 @@ public final class DefaultCharacter implements Character {
     public final void addEquipment(final String slot, final Equipment item) {
         final Optional<ItemSlot> foundSlot;
         final ItemSlot itemSlot;
+        final Boolean validSlot;
 
-        foundSlot = equipment.stream().filter((s) -> s.getName().equals(slot))
-                .findFirst();
-        if (foundSlot.isPresent()) {
-            itemSlot = foundSlot.get();
-            itemSlot.setItem(item);
+        validSlot = StreamSupport.stream(item.getSlots().spliterator(), false)
+                .filter((s) -> s.equals(slot)).findAny().isPresent();
+
+        if (validSlot) {
+            foundSlot = equipment.stream()
+                    .filter((s) -> s.getName().equals(slot)).findFirst();
+
+            if (foundSlot.isPresent()) {
+                itemSlot = foundSlot.get();
+                itemSlot.setItem(item);
+            }
         }
     }
 

@@ -1,6 +1,8 @@
 
 package com.bernardomg.example.rpg.character.unit.item;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -32,8 +34,12 @@ public final class TestDefaultCharacterItemStat {
                 .withItemSlot(DefaultItemSlots.MAIN_HAND.getKey()).get();
 
         swordSmall = new DefaultItemBuilder().equipment()
+                .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
+                        DefaultItemSlots.OFF_HAND.getKey()))
                 .withAttribute(DefaultStats.DAMAGE.getKey(), 5).get();
         swordBig = new DefaultItemBuilder().equipment()
+                .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
+                        DefaultItemSlots.OFF_HAND.getKey()))
                 .withAttribute(DefaultStats.DAMAGE.getKey(), 10).get();
     }
 
