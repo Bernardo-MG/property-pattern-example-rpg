@@ -21,14 +21,14 @@ public final class DefaultCharacter implements Character {
 
     private final Collection<ItemSlot> equipment = new ArrayList<>();
 
-    private final PropertyExecutor     propertyTransformer;
+    private final PropertyExecutor     propertyExecutor;
 
     private final StatStore            statStore = new DefaultStatStore();
 
     public DefaultCharacter(final PropertyExecutor propTransformer) {
         super();
 
-        propertyTransformer = propTransformer;
+        propertyExecutor = propTransformer;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class DefaultCharacter implements Character {
         abilities.add(ability);
 
         ability.getProperties().stream()
-                .forEach((p) -> propertyTransformer.apply(p, statStore));
+                .forEach((p) -> propertyExecutor.apply(p, statStore));
     }
 
     @Override
@@ -120,7 +120,7 @@ public final class DefaultCharacter implements Character {
         abilities.remove(ability);
 
         ability.getProperties().stream()
-                .forEach((p) -> propertyTransformer.undo(p, statStore));
+                .forEach((p) -> propertyExecutor.undo(p, statStore));
     }
 
     @Override
