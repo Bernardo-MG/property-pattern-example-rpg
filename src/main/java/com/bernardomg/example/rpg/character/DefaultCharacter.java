@@ -62,6 +62,24 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
+    public final Equipment getEquipment(final String slot) {
+        final Optional<ItemSlot> foundSlot;
+        final ItemSlot itemSlot;
+        final Equipment result;
+
+        foundSlot = equipment.stream().filter((s) -> s.getName().equals(slot))
+                .findFirst();
+        if (foundSlot.isPresent()) {
+            itemSlot = foundSlot.get();
+            result = itemSlot.getItem();
+        } else {
+            result = null;
+        }
+
+        return result;
+    }
+
+    @Override
     public final Iterable<ItemSlot> getItemSlots() {
         return Collections.unmodifiableCollection(equipment);
     }

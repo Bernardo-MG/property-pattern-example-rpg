@@ -29,7 +29,7 @@ public final class TestDefaultCharacterItemStat {
                 .withAttribute(DefaultStats.STRENGTH.getKey())
                 .withMultipliedDerivedAttribute(DefaultStats.DAMAGE.getKey(),
                         DefaultStats.STRENGTH.getKey(), 2)
-                .withItemSlot(DefaultItemSlots.LEFT_HAND.getKey()).get();
+                .withItemSlot(DefaultItemSlots.MAIN_HAND.getKey()).get();
 
         swordSmall = new DefaultItemBuilder().equipment()
                 .withAttribute(DefaultStats.DAMAGE.getKey(), 5).get();
@@ -40,8 +40,8 @@ public final class TestDefaultCharacterItemStat {
     @Test
     public final void testDerived_ReplaceEquipment() {
         character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
-        character.addEquipment(DefaultItemSlots.LEFT_HAND.getKey(), swordSmall);
-        character.addEquipment(DefaultItemSlots.LEFT_HAND.getKey(), swordBig);
+        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordSmall);
+        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordBig);
 
         Assertions.assertEquals((Integer) 14,
                 character.getStatValue(DefaultStats.DAMAGE.getKey()));
@@ -50,7 +50,7 @@ public final class TestDefaultCharacterItemStat {
     @Test
     public final void testDerived_WithEquipment() {
         character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
-        character.addEquipment(DefaultItemSlots.LEFT_HAND.getKey(), swordSmall);
+        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordSmall);
 
         Assertions.assertEquals((Integer) 9,
                 character.getStatValue(DefaultStats.DAMAGE.getKey()));

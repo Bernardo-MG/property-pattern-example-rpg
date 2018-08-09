@@ -16,6 +16,8 @@ public interface Character extends StatStore {
 
     public Iterable<Ability> getAbilities();
 
+    public Equipment getEquipment(final String slot);
+
     public Iterable<ItemSlot> getItemSlots();
 
     public void removeAbility(final Ability ability);
