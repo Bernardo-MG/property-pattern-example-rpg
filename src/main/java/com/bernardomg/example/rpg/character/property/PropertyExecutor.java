@@ -2,6 +2,7 @@
 package com.bernardomg.example.rpg.character.property;
 
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
+import com.bernardomg.example.rpg.command.Command;
 
 public interface PropertyExecutor {
 

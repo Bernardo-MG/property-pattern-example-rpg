@@ -2,8 +2,8 @@
 package com.bernardomg.example.rpg.character.builder;
 
 import com.bernardomg.example.rpg.character.Character;
-import com.bernardomg.example.rpg.character.property.Command;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
+import com.bernardomg.example.rpg.command.Command;
 import com.bernardomg.example.rpg.event.EventInterceptor;
 
 public interface CharacterBuilder {

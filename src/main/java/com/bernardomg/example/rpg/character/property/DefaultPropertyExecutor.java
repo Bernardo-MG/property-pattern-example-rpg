@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
+import com.bernardomg.example.rpg.command.Command;
 
 public class DefaultPropertyExecutor implements PropertyExecutor {
 

@@ -1,7 +1,6 @@
 
 package com.bernardomg.example.rpg.character.event.equipment.interceptor;
 
-import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.constants.DefaultItemSlots;
 import com.bernardomg.example.rpg.character.constants.DefaultProperties;
 import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
@@ -9,6 +8,7 @@ import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.event.Event;
 import com.bernardomg.example.rpg.event.EventInterceptor;
+import com.bernardomg.example.rpg.rule.command.EquipTwoHandedCommand;
 
 public final class TwoHandedEquipmentEventInterceptor
         implements EventInterceptor {
@@ -23,7 +23,6 @@ public final class TwoHandedEquipmentEventInterceptor
 
         if (event instanceof EquipItemEvent) {
             result = accepts((EquipItemEvent) event);
-
         } else {
             result = false;
         }
@@ -33,16 +32,7 @@ public final class TwoHandedEquipmentEventInterceptor
 
     @Override
     public final void onEvent(final Event event) {
-        final Character character;
-        final Equipment equipment;
-        final EquipItemEvent equipItemEvent;
-
-        equipItemEvent = (EquipItemEvent) event;
-        character = equipItemEvent.getCharacter();
-        equipment = equipItemEvent.getEquipment();
-
-        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), equipment);
-        character.addEquipment(DefaultItemSlots.OFF_HAND.getKey(), equipment);
+        new EquipTwoHandedCommand().apply((EquipItemEvent) event);
     }
 
     private final Boolean accepts(final EquipItemEvent event) {

@@ -12,7 +12,7 @@ import com.bernardomg.example.rpg.character.ability.DefaultAbility;
 import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
 import com.bernardomg.example.rpg.character.constants.DefaultAbilities;
 import com.bernardomg.example.rpg.character.constants.DefaultStats;
-import com.bernardomg.example.rpg.character.property.MagicDamageStatCommand;
+import com.bernardomg.example.rpg.rule.command.MagicDamageStatCommand;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterAbilityProperty {

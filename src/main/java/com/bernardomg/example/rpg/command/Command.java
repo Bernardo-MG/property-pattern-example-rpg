@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.rpg.character.property;
+package com.bernardomg.example.rpg.command;
 
 public interface Command<T> {
 
