@@ -3,7 +3,6 @@ package com.bernardomg.example.rpg.character.builder;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.command.Command;
-import com.bernardomg.example.rpg.event.EventInterceptor;
 
 public interface CharacterBuilder {
 
@@ -13,9 +12,6 @@ public interface CharacterBuilder {
             final Command<? extends Object> function);
 
     public CharacterBuilder withAttribute(final String name);
-
-    public CharacterBuilder
-            withEquipItemEventInterceptor(final EventInterceptor interceptor);
 
     public CharacterBuilder withItemSlot(final String name);
 

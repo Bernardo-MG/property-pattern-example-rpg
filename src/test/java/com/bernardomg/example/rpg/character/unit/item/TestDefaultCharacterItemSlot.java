@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
-import com.bernardomg.example.rpg.character.event.equipment.interceptor.TwoHandedEquipmentEventInterceptor;
 import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.item.builder.DefaultItemBuilder;
 import com.bernardomg.example.rpg.constants.DefaultItemSlots;
@@ -38,8 +37,6 @@ public final class TestDefaultCharacterItemSlot {
                         DefaultStats.STRENGTH.getKey(), 2)
                 .withItemSlot(DefaultItemSlots.MAIN_HAND.getKey())
                 .withItemSlot(DefaultItemSlots.OFF_HAND.getKey())
-                .withEquipItemEventInterceptor(
-                        new TwoHandedEquipmentEventInterceptor())
                 .registerProperty(DefaultProperties.TWO_HANDED.getKey(),
                         new EquipTwoHandedCommand())
                 .get();

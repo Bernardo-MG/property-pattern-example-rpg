@@ -7,7 +7,6 @@ import com.bernardomg.example.rpg.character.slot.item.DefaultItemSlot;
 import com.bernardomg.example.rpg.character.stat.DefaultValueStat;
 import com.bernardomg.example.rpg.character.stat.MultipliedDerivedStat;
 import com.bernardomg.example.rpg.command.Command;
-import com.bernardomg.example.rpg.event.EventInterceptor;
 import com.bernardomg.example.rpg.property.DefaultPropertyExecutor;
 import com.bernardomg.example.rpg.property.PropertyExecutor;
 
@@ -39,14 +38,6 @@ public final class DefaultCharacterBuilder implements CharacterBuilder {
     @Override
     public final CharacterBuilder withAttribute(final String name) {
         character.setStat(name, new DefaultValueStat());
-
-        return this;
-    }
-
-    @Override
-    public final CharacterBuilder
-            withEquipItemEventInterceptor(final EventInterceptor interceptor) {
-        character.addEquipItemEventInterceptor(interceptor);
 
         return this;
     }

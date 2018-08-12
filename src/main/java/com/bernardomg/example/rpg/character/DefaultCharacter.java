@@ -15,23 +15,17 @@ import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.character.stat.Stat;
 import com.bernardomg.example.rpg.character.stat.store.DefaultStatStore;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
-import com.bernardomg.example.rpg.constants.DefaultEvents;
-import com.bernardomg.example.rpg.event.DefaultEventHandler;
-import com.bernardomg.example.rpg.event.EventHandler;
-import com.bernardomg.example.rpg.event.EventInterceptor;
 import com.bernardomg.example.rpg.property.PropertyExecutor;
 
 public final class DefaultCharacter implements Character {
 
-    private final Collection<Ability>  abilities    = new ArrayList<>();
+    private final Collection<Ability>  abilities = new ArrayList<>();
 
-    private final Collection<ItemSlot> equipment    = new ArrayList<>();
-
-    private final EventHandler         eventHandler = new DefaultEventHandler();
+    private final Collection<ItemSlot> equipment = new ArrayList<>();
 
     private final PropertyExecutor     propertyExecutor;
 
-    private final StatStore            statStore    = new DefaultStatStore();
+    private final StatStore            statStore = new DefaultStatStore();
 
     public DefaultCharacter(final PropertyExecutor propTransformer) {
         super();
@@ -45,13 +39,6 @@ public final class DefaultCharacter implements Character {
 
         ability.getProperties().stream()
                 .forEach((p) -> propertyExecutor.apply(p, statStore));
-    }
-
-    @Override
-    public final void
-            addEquipItemEventInterceptor(final EventInterceptor interceptor) {
-        eventHandler.addEventInterceptor(DefaultEvents.EQUIP_ITEM.getKey(),
-                interceptor);
     }
 
     @Override
@@ -179,7 +166,6 @@ public final class DefaultCharacter implements Character {
 
         event = new EquipItemEvent(this, equipment, slot);
 
-        // eventHandler.fireEvent(DefaultEvents.EQUIP_ITEM.getKey(), event);
         equipment.getProperties().stream()
                 .forEach((p) -> propertyExecutor.apply(p, event));
     }

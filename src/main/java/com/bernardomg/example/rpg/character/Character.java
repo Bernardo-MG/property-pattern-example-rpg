@@ -5,14 +5,10 @@ import com.bernardomg.example.rpg.character.ability.Ability;
 import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
-import com.bernardomg.example.rpg.event.EventInterceptor;
 
 public interface Character extends StatStore {
 
     public void addAbility(final Ability ability);
-
-    public void
-            addEquipItemEventInterceptor(final EventInterceptor interceptor);
 
     public void addEquipment(final String slot, final Equipment item);
 
