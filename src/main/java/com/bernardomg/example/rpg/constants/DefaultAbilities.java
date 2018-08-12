@@ -3,7 +3,7 @@ package com.bernardomg.example.rpg.constants;
 
 public enum DefaultAbilities {
 
-    MAGIC_DAMAGE("magic_damage");
+    MAGIC_DAMAGE("magic_damage"), PLACEHOLDER("placeholder");
 
     private final String key;
 

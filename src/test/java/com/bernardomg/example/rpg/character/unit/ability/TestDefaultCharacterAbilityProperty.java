@@ -19,6 +19,8 @@ public final class TestDefaultCharacterAbilityProperty {
 
     private final Character character;
 
+    private final Ability   emptyAbility;
+
     private final Ability   magicDamageAbility;
 
     public TestDefaultCharacterAbilityProperty() {
@@ -36,6 +38,9 @@ public final class TestDefaultCharacterAbilityProperty {
         magicDamageAbility = new DefaultAbility(
                 DefaultAbilities.MAGIC_DAMAGE.getKey());
         magicDamageAbility.addProperty(DefaultAbilities.MAGIC_DAMAGE.getKey());
+
+        emptyAbility = new DefaultAbility(
+                DefaultAbilities.PLACEHOLDER.getKey());
     }
 
     @Test
@@ -59,6 +64,19 @@ public final class TestDefaultCharacterAbilityProperty {
         character.removeAbility(magicDamageAbility);
 
         Assertions.assertEquals((Integer) 4,
+                character.getStatValue(DefaultStats.DAMAGE.getKey()));
+    }
+
+    @Test
+    public final void testDerived_RemoveAnotherAbility_DerivedKept() {
+        character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
+        character.setStatValue(DefaultStats.INTELLIGENCE.getKey(), 5);
+
+        character.addAbility(magicDamageAbility);
+
+        character.removeAbility(emptyAbility);
+
+        Assertions.assertEquals((Integer) 10,
                 character.getStatValue(DefaultStats.DAMAGE.getKey()));
     }
 
