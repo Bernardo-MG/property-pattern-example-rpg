@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.rpg.character.property;
+package com.bernardomg.example.rpg.property;
 
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
 import com.bernardomg.example.rpg.command.Command;

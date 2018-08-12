@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.rpg.character.property;
+package com.bernardomg.example.rpg.property;
 
 import java.util.HashMap;
 import java.util.Map;

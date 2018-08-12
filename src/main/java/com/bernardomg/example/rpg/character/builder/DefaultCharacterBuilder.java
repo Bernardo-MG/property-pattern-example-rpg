@@ -3,14 +3,14 @@ package com.bernardomg.example.rpg.character.builder;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.DefaultCharacter;
-import com.bernardomg.example.rpg.character.property.DefaultPropertyExecutor;
-import com.bernardomg.example.rpg.character.property.PropertyExecutor;
 import com.bernardomg.example.rpg.character.slot.item.DefaultItemSlot;
 import com.bernardomg.example.rpg.character.stat.DefaultValueStat;
 import com.bernardomg.example.rpg.character.stat.MultipliedDerivedStat;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
 import com.bernardomg.example.rpg.command.Command;
 import com.bernardomg.example.rpg.event.EventInterceptor;
+import com.bernardomg.example.rpg.property.DefaultPropertyExecutor;
+import com.bernardomg.example.rpg.property.PropertyExecutor;
 
 public final class DefaultCharacterBuilder implements CharacterBuilder {
 

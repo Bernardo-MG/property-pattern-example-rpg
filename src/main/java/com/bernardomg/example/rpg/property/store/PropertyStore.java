@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.rpg.character.property.store;
+package com.bernardomg.example.rpg.property.store;
 
 import java.util.Collection;
 

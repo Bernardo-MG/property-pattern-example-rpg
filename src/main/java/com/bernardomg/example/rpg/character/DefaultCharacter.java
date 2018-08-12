@@ -11,7 +11,6 @@ import com.bernardomg.example.rpg.character.ability.Ability;
 import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.character.item.EmptyEquipment;
 import com.bernardomg.example.rpg.character.item.Equipment;
-import com.bernardomg.example.rpg.character.property.PropertyExecutor;
 import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.character.stat.Stat;
 import com.bernardomg.example.rpg.character.stat.store.DefaultStatStore;
@@ -19,6 +18,7 @@ import com.bernardomg.example.rpg.character.stat.store.StatStore;
 import com.bernardomg.example.rpg.event.DefaultEventHandler;
 import com.bernardomg.example.rpg.event.EventHandler;
 import com.bernardomg.example.rpg.event.EventInterceptor;
+import com.bernardomg.example.rpg.property.PropertyExecutor;
 
 public final class DefaultCharacter implements Character {
 
