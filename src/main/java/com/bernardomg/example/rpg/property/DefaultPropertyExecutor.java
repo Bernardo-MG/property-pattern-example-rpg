@@ -15,6 +15,7 @@ public class DefaultPropertyExecutor implements PropertyExecutor {
 
     public DefaultPropertyExecutor() {
         super();
+        // TODO: Support collections of commands?
     }
 
     @Override
@@ -26,18 +27,28 @@ public class DefaultPropertyExecutor implements PropertyExecutor {
 
     @Override
     public void apply(final String property, final Object target) {
+        final Command command;
+
         if ((transformers.containsKey(property))
                 && (semaphores.get(property).tryAcquire())) {
-            ((Command) transformers.get(property)).apply(target);
+            command = (transformers.get(property));
+            if (command.valid(target)) {
+                command.apply(target);
+            }
             semaphores.get(property).release();
         }
     }
 
     @Override
     public void undo(final String property, final Object target) {
+        final Command command;
+
         if ((transformers.containsKey(property))
                 && (semaphores.get(property).tryAcquire())) {
-            ((Command) transformers.get(property)).undo(target);
+            command = (transformers.get(property));
+            if (command.valid(target)) {
+                command.undo(target);
+            }
             semaphores.get(property).release();
         }
     }

@@ -3,7 +3,7 @@ package com.bernardomg.example.rpg.constants;
 
 public enum DefaultItemSlots {
 
-    ARMOR("armor"), MAIN_HAND("main_hand"), OFF_HAND("off_hand");
+    ARMOR("armor"), BACK("back"), MAIN_HAND("main_hand"), OFF_HAND("off_hand");
 
     private final String key;
 

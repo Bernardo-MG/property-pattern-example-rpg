@@ -24,4 +24,9 @@ public class MagicDamageStatCommand implements Command<StatStore> {
                 new MultipliedDerivedStat(DefaultStats.STRENGTH.getKey(), 2));
     }
 
+    @Override
+    public final Boolean valid(final StatStore target) {
+        return true;
+    }
+
 }

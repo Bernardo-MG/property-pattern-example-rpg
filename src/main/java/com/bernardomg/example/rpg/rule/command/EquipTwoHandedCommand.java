@@ -4,6 +4,7 @@ package com.bernardomg.example.rpg.rule.command;
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.character.item.Equipment;
+import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.command.Command;
 import com.bernardomg.example.rpg.constants.DefaultItemSlots;
 
@@ -28,5 +29,16 @@ public final class EquipTwoHandedCommand implements Command<EquipItemEvent> {
 
     @Override
     public final void undo(final EquipItemEvent target) {}
+
+    @Override
+    public final Boolean valid(final EquipItemEvent target) {
+        final ItemSlot itemSlot;
+
+        itemSlot = target.getItemSlot();
+
+        return ((DefaultItemSlots.MAIN_HAND.getKey().equals(itemSlot.getName()))
+                || (DefaultItemSlots.OFF_HAND.getKey()
+                        .equals(itemSlot.getName())));
+    }
 
 }

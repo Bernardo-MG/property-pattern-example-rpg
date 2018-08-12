@@ -7,4 +7,6 @@ public interface Command<T> {
 
     public void undo(final T target);
 
+    public Boolean valid(final T target);
+
 }

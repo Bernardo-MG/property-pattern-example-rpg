@@ -37,6 +37,7 @@ public final class TestDefaultCharacterItemSlot {
                         DefaultStats.STRENGTH.getKey(), 2)
                 .withItemSlot(DefaultItemSlots.MAIN_HAND.getKey())
                 .withItemSlot(DefaultItemSlots.OFF_HAND.getKey())
+                .withItemSlot(DefaultItemSlots.BACK.getKey())
                 .registerProperty(DefaultProperties.TWO_HANDED.getKey(),
                         new EquipTwoHandedCommand())
                 .get();
@@ -51,7 +52,8 @@ public final class TestDefaultCharacterItemSlot {
                 .withAttribute(DefaultStats.DAMAGE.getKey(), 10).get();
         twoHanded = new DefaultItemBuilder().equipment()
                 .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
-                        DefaultItemSlots.OFF_HAND.getKey()))
+                        DefaultItemSlots.OFF_HAND.getKey(),
+                        DefaultItemSlots.BACK.getKey()))
                 .withAttribute(DefaultStats.DAMAGE.getKey(), 10)
                 .withProperty(DefaultProperties.TWO_HANDED.getKey()).get();
     }
@@ -92,6 +94,21 @@ public final class TestDefaultCharacterItemSlot {
                 character.getEquipment(DefaultItemSlots.MAIN_HAND.getKey()));
         Assertions.assertEquals(twoHanded,
                 character.getEquipment(DefaultItemSlots.OFF_HAND.getKey()));
+    }
+
+    @Test
+    public final void testSlot_TwoHanded_Back_NotReplacesEquipment() {
+        character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
+        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordSmall);
+        character.addEquipment(DefaultItemSlots.OFF_HAND.getKey(), swordBig);
+        character.addEquipment(DefaultItemSlots.BACK.getKey(), twoHanded);
+
+        Assertions.assertEquals(swordSmall,
+                character.getEquipment(DefaultItemSlots.MAIN_HAND.getKey()));
+        Assertions.assertEquals(swordBig,
+                character.getEquipment(DefaultItemSlots.OFF_HAND.getKey()));
+        Assertions.assertEquals(twoHanded,
+                character.getEquipment(DefaultItemSlots.BACK.getKey()));
     }
 
     @Test
