@@ -10,8 +10,8 @@ import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.ability.Ability;
 import com.bernardomg.example.rpg.character.ability.DefaultAbility;
 import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
-import com.bernardomg.example.rpg.character.constants.DefaultAbilities;
-import com.bernardomg.example.rpg.character.constants.DefaultStats;
+import com.bernardomg.example.rpg.constants.DefaultAbilities;
+import com.bernardomg.example.rpg.constants.DefaultStats;
 import com.bernardomg.example.rpg.rule.command.MagicDamageStatCommand;
 
 @RunWith(JUnitPlatform.class)

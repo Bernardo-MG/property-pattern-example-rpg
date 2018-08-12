@@ -15,6 +15,7 @@ import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.character.stat.Stat;
 import com.bernardomg.example.rpg.character.stat.store.DefaultStatStore;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
+import com.bernardomg.example.rpg.constants.DefaultEvents;
 import com.bernardomg.example.rpg.event.DefaultEventHandler;
 import com.bernardomg.example.rpg.event.EventHandler;
 import com.bernardomg.example.rpg.event.EventInterceptor;
@@ -49,7 +50,8 @@ public final class DefaultCharacter implements Character {
     @Override
     public final void
             addEquipItemEventInterceptor(final EventInterceptor interceptor) {
-        eventHandler.addEventInterceptor(interceptor);
+        eventHandler.addEventInterceptor(DefaultEvents.EQUIP_ITEM.getKey(),
+                interceptor);
     }
 
     @Override
@@ -177,7 +179,7 @@ public final class DefaultCharacter implements Character {
 
         event = new EquipItemEvent(this, equipment, slot);
 
-        eventHandler.fireEvent(event);
+        eventHandler.fireEvent(DefaultEvents.EQUIP_ITEM.getKey(), event);
     }
 
 }

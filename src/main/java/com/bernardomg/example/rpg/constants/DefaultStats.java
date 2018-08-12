@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.rpg.character.constants;
+package com.bernardomg.example.rpg.constants;
 
 public enum DefaultStats {
 

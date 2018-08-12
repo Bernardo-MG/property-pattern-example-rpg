@@ -1,11 +1,11 @@
 
 package com.bernardomg.example.rpg.character.event.equipment.interceptor;
 
-import com.bernardomg.example.rpg.character.constants.DefaultItemSlots;
-import com.bernardomg.example.rpg.character.constants.DefaultProperties;
 import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
+import com.bernardomg.example.rpg.constants.DefaultItemSlots;
+import com.bernardomg.example.rpg.constants.DefaultProperties;
 import com.bernardomg.example.rpg.event.Event;
 import com.bernardomg.example.rpg.event.EventInterceptor;
 import com.bernardomg.example.rpg.rule.command.EquipTwoHandedCommand;

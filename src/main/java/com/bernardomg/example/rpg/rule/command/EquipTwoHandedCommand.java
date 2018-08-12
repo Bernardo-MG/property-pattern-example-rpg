@@ -2,10 +2,10 @@
 package com.bernardomg.example.rpg.rule.command;
 
 import com.bernardomg.example.rpg.character.Character;
-import com.bernardomg.example.rpg.character.constants.DefaultItemSlots;
 import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.command.Command;
+import com.bernardomg.example.rpg.constants.DefaultItemSlots;
 
 public final class EquipTwoHandedCommand implements Command<EquipItemEvent> {
 

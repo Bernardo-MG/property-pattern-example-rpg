@@ -10,12 +10,12 @@ import org.junit.runner.RunWith;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
-import com.bernardomg.example.rpg.character.constants.DefaultItemSlots;
-import com.bernardomg.example.rpg.character.constants.DefaultProperties;
-import com.bernardomg.example.rpg.character.constants.DefaultStats;
 import com.bernardomg.example.rpg.character.event.equipment.interceptor.TwoHandedEquipmentEventInterceptor;
 import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.item.builder.DefaultItemBuilder;
+import com.bernardomg.example.rpg.constants.DefaultItemSlots;
+import com.bernardomg.example.rpg.constants.DefaultProperties;
+import com.bernardomg.example.rpg.constants.DefaultStats;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterItemSlot {

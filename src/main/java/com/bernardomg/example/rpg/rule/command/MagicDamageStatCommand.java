@@ -1,10 +1,10 @@
 
 package com.bernardomg.example.rpg.rule.command;
 
-import com.bernardomg.example.rpg.character.constants.DefaultStats;
 import com.bernardomg.example.rpg.character.stat.MultipliedDerivedStat;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
 import com.bernardomg.example.rpg.command.Command;
+import com.bernardomg.example.rpg.constants.DefaultStats;
 
 public class MagicDamageStatCommand implements Command<StatStore> {
 
