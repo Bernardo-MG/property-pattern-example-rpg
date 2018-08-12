@@ -31,6 +31,13 @@ public final class DefaultEquipmentBuilder implements EquipmentBuilder {
     }
 
     @Override
+    public final EquipmentBuilder withProperty(final String property) {
+        equipment.addProperty(property);
+
+        return this;
+    }
+
+    @Override
     public final EquipmentBuilder withSlots(final Iterable<String> slots) {
         equipment.setSlots(slots);
 

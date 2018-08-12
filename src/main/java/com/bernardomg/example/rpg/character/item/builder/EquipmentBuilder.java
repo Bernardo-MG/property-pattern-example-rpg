@@ -10,6 +10,8 @@ public interface EquipmentBuilder {
     public EquipmentBuilder withAttribute(final String name,
             final Integer value);
 
+    public EquipmentBuilder withProperty(final String property);
+
     public EquipmentBuilder withSlots(final Iterable<String> slots);
 
     public EquipmentBuilder withSlots(final String slot);

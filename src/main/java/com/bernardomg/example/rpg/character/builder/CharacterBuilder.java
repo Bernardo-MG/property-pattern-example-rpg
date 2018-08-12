@@ -2,8 +2,10 @@
 package com.bernardomg.example.rpg.character.builder;
 
 import com.bernardomg.example.rpg.character.Character;
+import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.character.property.Command;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
+import com.bernardomg.example.rpg.event.EventInterceptor;
 
 public interface CharacterBuilder {
 
@@ -13,6 +15,9 @@ public interface CharacterBuilder {
             final Command<StatStore> function);
 
     public CharacterBuilder withAttribute(final String name);
+
+    public CharacterBuilder withEquipItemEventInterceptor(
+            final EventInterceptor<EquipItemEvent> interceptor);
 
     public CharacterBuilder withItemSlot(final String name);
 

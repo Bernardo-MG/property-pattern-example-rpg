@@ -1,11 +1,12 @@
 
 package com.bernardomg.example.rpg.character.slot.item;
 
+import com.bernardomg.example.rpg.character.item.EmptyEquipment;
 import com.bernardomg.example.rpg.character.item.Equipment;
 
 public final class DefaultItemSlot implements ItemSlot {
 
-    private Equipment    item;
+    private Equipment    item = new EmptyEquipment();
 
     private final String name;
 

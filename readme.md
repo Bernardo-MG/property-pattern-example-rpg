@@ -1,8 +1,8 @@
 # RPG Patterns Example
 
-An example making use of design patterns to model a RPG character.
+A test project making use of design patterns to model a RPG character.
 
-Some references used when creating the example:
+Some references used when creating the examples:
 
 * [Game Programming Patterns](http://gameprogrammingpatterns.com)
 * [Design Patterns of Successful

@@ -11,7 +11,9 @@ import org.junit.runner.RunWith;
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
 import com.bernardomg.example.rpg.character.constants.DefaultItemSlots;
+import com.bernardomg.example.rpg.character.constants.DefaultProperties;
 import com.bernardomg.example.rpg.character.constants.DefaultStats;
+import com.bernardomg.example.rpg.character.event.equipment.interceptor.TwoHandedEquipmentEventInterceptor;
 import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.item.builder.DefaultItemBuilder;
 
@@ -34,7 +36,10 @@ public final class TestDefaultCharacterItemSlot {
                 .withMultipliedDerivedAttribute(DefaultStats.DAMAGE.getKey(),
                         DefaultStats.STRENGTH.getKey(), 2)
                 .withItemSlot(DefaultItemSlots.MAIN_HAND.getKey())
-                .withItemSlot(DefaultItemSlots.OFF_HAND.getKey()).get();
+                .withItemSlot(DefaultItemSlots.OFF_HAND.getKey())
+                .withEquipItemEventInterceptor(
+                        new TwoHandedEquipmentEventInterceptor())
+                .get();
 
         swordSmall = new DefaultItemBuilder().equipment()
                 .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
@@ -47,7 +52,8 @@ public final class TestDefaultCharacterItemSlot {
         twoHanded = new DefaultItemBuilder().equipment()
                 .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
                         DefaultItemSlots.OFF_HAND.getKey()))
-                .withAttribute(DefaultStats.DAMAGE.getKey(), 10).get();
+                .withAttribute(DefaultStats.DAMAGE.getKey(), 10)
+                .withProperty(DefaultProperties.TWO_HANDED.getKey()).get();
     }
 
     @Test

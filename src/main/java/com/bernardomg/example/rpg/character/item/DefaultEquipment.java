@@ -3,6 +3,8 @@ package com.bernardomg.example.rpg.character.item;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 
 import com.bernardomg.example.rpg.character.stat.Stat;
 import com.bernardomg.example.rpg.character.stat.store.DefaultStatStore;
@@ -11,12 +13,24 @@ import com.google.common.collect.Iterables;
 
 public final class DefaultEquipment implements Equipment {
 
-    private final Collection<String> slots     = new ArrayList<>();
+    private final Collection<String> properties = new HashSet<>();
 
-    private final StatStore          statStore = new DefaultStatStore();
+    private final Collection<String> slots      = new ArrayList<>();
+
+    private final StatStore          statStore  = new DefaultStatStore();
 
     public DefaultEquipment() {
         super();
+    }
+
+    @Override
+    public final void addProperty(final String name) {
+        properties.add(name);
+    }
+
+    @Override
+    public final Collection<String> getProperties() {
+        return Collections.unmodifiableCollection(properties);
     }
 
     @Override
@@ -35,8 +49,18 @@ public final class DefaultEquipment implements Equipment {
     }
 
     @Override
+    public final Boolean hasProperty(final String name) {
+        return properties.contains(name);
+    }
+
+    @Override
     public final Boolean hasStat(final String stat) {
         return statStore.hasStat(stat);
+    }
+
+    @Override
+    public final void removeProperty(final String name) {
+        properties.remove(name);
     }
 
     @Override

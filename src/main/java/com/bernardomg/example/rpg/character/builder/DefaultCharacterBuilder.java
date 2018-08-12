@@ -3,6 +3,7 @@ package com.bernardomg.example.rpg.character.builder;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.DefaultCharacter;
+import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.character.property.Command;
 import com.bernardomg.example.rpg.character.property.DefaultPropertyExecutor;
 import com.bernardomg.example.rpg.character.property.PropertyExecutor;
@@ -10,6 +11,7 @@ import com.bernardomg.example.rpg.character.slot.item.DefaultItemSlot;
 import com.bernardomg.example.rpg.character.stat.DefaultValueStat;
 import com.bernardomg.example.rpg.character.stat.MultipliedDerivedStat;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
+import com.bernardomg.example.rpg.event.EventInterceptor;
 
 public final class DefaultCharacterBuilder implements CharacterBuilder {
 
@@ -44,7 +46,15 @@ public final class DefaultCharacterBuilder implements CharacterBuilder {
     }
 
     @Override
-    public CharacterBuilder withItemSlot(final String name) {
+    public final CharacterBuilder withEquipItemEventInterceptor(
+            final EventInterceptor<EquipItemEvent> interceptor) {
+        character.addEquipItemEventInterceptor(interceptor);
+
+        return this;
+    }
+
+    @Override
+    public final CharacterBuilder withItemSlot(final String name) {
         character.addItemSlot(new DefaultItemSlot(name));
 
         return this;

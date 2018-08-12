@@ -9,14 +9,14 @@ public interface StatStore {
 
     public Collection<String> getStatNames();
 
-    public Integer getStatValue(final String stat);
+    public Integer getStatValue(final String name);
 
-    public Boolean hasStat(final String stat);
+    public Boolean hasStat(final String name);
 
-    public void removeStat(final String stat);
+    public void removeStat(final String name);
 
-    public void setStat(final String stat, final Stat value);
+    public void setStat(final String name, final Stat value);
 
-    public void setStatValue(final String stat, final Integer value);
+    public void setStatValue(final String name, final Integer value);
 
 }

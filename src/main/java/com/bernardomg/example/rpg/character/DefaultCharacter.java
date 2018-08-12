@@ -8,22 +8,26 @@ import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import com.bernardomg.example.rpg.character.ability.Ability;
+import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.property.PropertyExecutor;
 import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.character.stat.Stat;
 import com.bernardomg.example.rpg.character.stat.store.DefaultStatStore;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
+import com.bernardomg.example.rpg.event.EventInterceptor;
 
 public final class DefaultCharacter implements Character {
 
-    private final Collection<Ability>  abilities = new ArrayList<>();
+    private final Collection<Ability>                          abilities             = new ArrayList<>();
 
-    private final Collection<ItemSlot> equipment = new ArrayList<>();
+    private final Collection<ItemSlot>                         equipment             = new ArrayList<>();
 
-    private final PropertyExecutor     propertyExecutor;
+    private final Collection<EventInterceptor<EquipItemEvent>> itemEquipInterceptors = new ArrayList<>();
 
-    private final StatStore            statStore = new DefaultStatStore();
+    private final PropertyExecutor                             propertyExecutor;
+
+    private final StatStore                                    statStore             = new DefaultStatStore();
 
     public DefaultCharacter(final PropertyExecutor propTransformer) {
         super();
@@ -37,6 +41,12 @@ public final class DefaultCharacter implements Character {
 
         ability.getProperties().stream()
                 .forEach((p) -> propertyExecutor.apply(p, statStore));
+    }
+
+    @Override
+    public final void addEquipItemEventInterceptor(
+            final EventInterceptor<EquipItemEvent> interceptor) {
+        itemEquipInterceptors.add(interceptor);
     }
 
     @Override
@@ -55,6 +65,8 @@ public final class DefaultCharacter implements Character {
             if (foundSlot.isPresent()) {
                 itemSlot = foundSlot.get();
                 itemSlot.setItem(item);
+
+                fireEquipItemEvent(item, itemSlot);
             }
         }
     }
@@ -155,6 +167,16 @@ public final class DefaultCharacter implements Character {
     @Override
     public final void setStatValue(final String stat, final Integer value) {
         statStore.setStatValue(stat, value);
+    }
+
+    private final void fireEquipItemEvent(final Equipment equipment,
+            final ItemSlot slot) {
+        final EquipItemEvent event;
+
+        event = new EquipItemEvent(this, equipment, slot);
+
+        itemEquipInterceptors.stream().filter((i) -> i.accepts(event))
+                .forEach((i) -> i.onEvent(event));
     }
 
 }
