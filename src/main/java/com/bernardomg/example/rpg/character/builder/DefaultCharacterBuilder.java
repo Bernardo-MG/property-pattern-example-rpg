@@ -3,7 +3,6 @@ package com.bernardomg.example.rpg.character.builder;
 
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.DefaultCharacter;
-import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.character.property.Command;
 import com.bernardomg.example.rpg.character.property.DefaultPropertyExecutor;
 import com.bernardomg.example.rpg.character.property.PropertyExecutor;
@@ -46,8 +45,8 @@ public final class DefaultCharacterBuilder implements CharacterBuilder {
     }
 
     @Override
-    public final CharacterBuilder withEquipItemEventInterceptor(
-            final EventInterceptor<EquipItemEvent> interceptor) {
+    public final CharacterBuilder
+            withEquipItemEventInterceptor(final EventInterceptor interceptor) {
         character.addEquipItemEventInterceptor(interceptor);
 
         return this;

@@ -1,10 +1,10 @@
 
 package com.bernardomg.example.rpg.event;
 
-public interface EventInterceptor<E extends Event> {
+public interface EventInterceptor {
 
-    public Boolean accepts(final E event);
+    public Boolean accepts(final Event event);
 
-    public void onEvent(final E event);
+    public void onEvent(final Event event);
 
 }

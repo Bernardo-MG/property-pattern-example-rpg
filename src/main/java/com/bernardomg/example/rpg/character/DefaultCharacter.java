@@ -9,25 +9,28 @@ import java.util.stream.StreamSupport;
 
 import com.bernardomg.example.rpg.character.ability.Ability;
 import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
+import com.bernardomg.example.rpg.character.item.EmptyEquipment;
 import com.bernardomg.example.rpg.character.item.Equipment;
 import com.bernardomg.example.rpg.character.property.PropertyExecutor;
 import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.character.stat.Stat;
 import com.bernardomg.example.rpg.character.stat.store.DefaultStatStore;
 import com.bernardomg.example.rpg.character.stat.store.StatStore;
+import com.bernardomg.example.rpg.event.DefaultEventHandler;
+import com.bernardomg.example.rpg.event.EventHandler;
 import com.bernardomg.example.rpg.event.EventInterceptor;
 
 public final class DefaultCharacter implements Character {
 
-    private final Collection<Ability>                          abilities             = new ArrayList<>();
+    private final Collection<Ability>  abilities    = new ArrayList<>();
 
-    private final Collection<ItemSlot>                         equipment             = new ArrayList<>();
+    private final Collection<ItemSlot> equipment    = new ArrayList<>();
 
-    private final Collection<EventInterceptor<EquipItemEvent>> itemEquipInterceptors = new ArrayList<>();
+    private final EventHandler         eventHandler = new DefaultEventHandler();
 
-    private final PropertyExecutor                             propertyExecutor;
+    private final PropertyExecutor     propertyExecutor;
 
-    private final StatStore                                    statStore             = new DefaultStatStore();
+    private final StatStore            statStore    = new DefaultStatStore();
 
     public DefaultCharacter(final PropertyExecutor propTransformer) {
         super();
@@ -44,9 +47,9 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final void addEquipItemEventInterceptor(
-            final EventInterceptor<EquipItemEvent> interceptor) {
-        itemEquipInterceptors.add(interceptor);
+    public final void
+            addEquipItemEventInterceptor(final EventInterceptor interceptor) {
+        eventHandler.addEventInterceptor(interceptor);
     }
 
     @Override
@@ -144,8 +147,7 @@ public final class DefaultCharacter implements Character {
                 .findFirst();
         if (foundSlot.isPresent()) {
             itemSlot = foundSlot.get();
-            // TODO: Avoid null
-            itemSlot.setItem(null);
+            itemSlot.setItem(new EmptyEquipment());
         }
     }
 
@@ -175,8 +177,7 @@ public final class DefaultCharacter implements Character {
 
         event = new EquipItemEvent(this, equipment, slot);
 
-        itemEquipInterceptors.stream().filter((i) -> i.accepts(event))
-                .forEach((i) -> i.onEvent(event));
+        eventHandler.fireEvent(event);
     }
 
 }
