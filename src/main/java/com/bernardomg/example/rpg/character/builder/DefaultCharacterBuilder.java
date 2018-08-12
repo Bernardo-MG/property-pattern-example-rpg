@@ -6,7 +6,6 @@ import com.bernardomg.example.rpg.character.DefaultCharacter;
 import com.bernardomg.example.rpg.character.slot.item.DefaultItemSlot;
 import com.bernardomg.example.rpg.character.stat.DefaultValueStat;
 import com.bernardomg.example.rpg.character.stat.MultipliedDerivedStat;
-import com.bernardomg.example.rpg.character.stat.store.StatStore;
 import com.bernardomg.example.rpg.command.Command;
 import com.bernardomg.example.rpg.event.EventInterceptor;
 import com.bernardomg.example.rpg.property.DefaultPropertyExecutor;
@@ -31,7 +30,7 @@ public final class DefaultCharacterBuilder implements CharacterBuilder {
 
     @Override
     public final CharacterBuilder registerProperty(final String property,
-            final Command<StatStore> function) {
+            final Command<? extends Object> function) {
         propertyTransformer.addFunction(property, function);
 
         return this;

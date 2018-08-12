@@ -16,6 +16,7 @@ import com.bernardomg.example.rpg.character.item.builder.DefaultItemBuilder;
 import com.bernardomg.example.rpg.constants.DefaultItemSlots;
 import com.bernardomg.example.rpg.constants.DefaultProperties;
 import com.bernardomg.example.rpg.constants.DefaultStats;
+import com.bernardomg.example.rpg.rule.command.EquipTwoHandedCommand;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterItemSlot {
@@ -39,6 +40,8 @@ public final class TestDefaultCharacterItemSlot {
                 .withItemSlot(DefaultItemSlots.OFF_HAND.getKey())
                 .withEquipItemEventInterceptor(
                         new TwoHandedEquipmentEventInterceptor())
+                .registerProperty(DefaultProperties.TWO_HANDED.getKey(),
+                        new EquipTwoHandedCommand())
                 .get();
 
         swordSmall = new DefaultItemBuilder().equipment()

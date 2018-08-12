@@ -179,7 +179,9 @@ public final class DefaultCharacter implements Character {
 
         event = new EquipItemEvent(this, equipment, slot);
 
-        eventHandler.fireEvent(DefaultEvents.EQUIP_ITEM.getKey(), event);
+        // eventHandler.fireEvent(DefaultEvents.EQUIP_ITEM.getKey(), event);
+        equipment.getProperties().stream()
+                .forEach((p) -> propertyExecutor.apply(p, event));
     }
 
 }
