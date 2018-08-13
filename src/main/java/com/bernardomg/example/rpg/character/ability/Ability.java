@@ -1,16 +1,10 @@
 
 package com.bernardomg.example.rpg.character.ability;
 
-import java.util.Collection;
+import com.bernardomg.example.rpg.property.store.PropertyStore;
 
-public interface Ability {
-
-    public void addProperty(final String property);
+public interface Ability extends PropertyStore {
 
     public String getName();
-
-    public Collection<String> getProperties();
-
-    public void removeProperty(final String property);
 
 }

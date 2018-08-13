@@ -33,6 +33,11 @@ public final class DefaultAbility implements Ability {
     }
 
     @Override
+    public final Boolean hasProperty(final String name) {
+        return properties.contains(name);
+    }
+
+    @Override
     public final void removeProperty(final String property) {
         properties.remove(property);
     }
