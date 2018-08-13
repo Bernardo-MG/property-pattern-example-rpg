@@ -1,17 +1,17 @@
 
 package com.bernardomg.example.rpg.stat;
 
-public final class MultipliedDerivedStat implements DerivedStat {
+public final class MultiplyDerivedStat implements DerivedStat {
 
     private final Integer     multiplier;
 
     private final DerivedStat wrappedStat;
 
-    public MultipliedDerivedStat(final String att, final Integer mult) {
+    public MultiplyDerivedStat(final String att, final Integer mult) {
         super();
 
         multiplier = mult;
-        wrappedStat = new DefaultDerivedStat(att, this::getMultipliedValue);
+        wrappedStat = new FunctionDerivedStat(att, this::getMultipliedValue);
     }
 
     @Override

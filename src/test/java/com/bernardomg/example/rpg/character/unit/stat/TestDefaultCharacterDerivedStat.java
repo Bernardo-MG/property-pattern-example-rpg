@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import com.bernardomg.example.rpg.builder.character.DefaultCharacterBuilder;
 import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.constants.DefaultStats;
-import com.bernardomg.example.rpg.stat.MultipliedDerivedStat;
+import com.bernardomg.example.rpg.stat.MultiplyDerivedStat;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterDerivedStat {
@@ -55,7 +55,7 @@ public final class TestDefaultCharacterDerivedStat {
                 character.getStatValue(DefaultStats.DAMAGE.getKey()));
 
         character.setStat(DefaultStats.DAMAGE.getKey(),
-                new MultipliedDerivedStat(DefaultStats.STRENGTH.getKey(), 3));
+                new MultiplyDerivedStat(DefaultStats.STRENGTH.getKey(), 3));
 
         Assertions.assertEquals((Integer) 6,
                 character.getStatValue(DefaultStats.DAMAGE.getKey()));

@@ -3,13 +3,13 @@ package com.bernardomg.example.rpg.stat;
 
 import java.util.function.Function;
 
-public final class DefaultDerivedStat implements DerivedStat {
+public final class FunctionDerivedStat implements DerivedStat {
 
     private final String                  attribute;
 
     private final Function<Stat, Integer> function;
 
-    public DefaultDerivedStat(final String att,
+    public FunctionDerivedStat(final String att,
             final Function<Stat, Integer> func) {
         super();
 

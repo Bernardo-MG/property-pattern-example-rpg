@@ -8,7 +8,7 @@ import com.bernardomg.example.rpg.inventory.slot.DefaultItemSlot;
 import com.bernardomg.example.rpg.property.DefaultPropertyExecutor;
 import com.bernardomg.example.rpg.property.PropertyExecutor;
 import com.bernardomg.example.rpg.stat.DefaultValueStat;
-import com.bernardomg.example.rpg.stat.MultipliedDerivedStat;
+import com.bernardomg.example.rpg.stat.MultiplyDerivedStat;
 
 public final class DefaultCharacterBuilder implements CharacterBuilder {
 
@@ -52,7 +52,7 @@ public final class DefaultCharacterBuilder implements CharacterBuilder {
     @Override
     public final CharacterBuilder withMultipliedDerivedAttribute(
             final String name, final String root, final Integer mult) {
-        character.setStat(name, new MultipliedDerivedStat(root, mult));
+        character.setStat(name, new MultiplyDerivedStat(root, mult));
 
         return this;
     }

@@ -4,6 +4,7 @@ package com.bernardomg.example.rpg.property;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Semaphore;
+import java.util.function.BiConsumer;
 
 import com.bernardomg.example.rpg.command.Command;
 
@@ -18,6 +19,21 @@ public class DefaultPropertyExecutor implements PropertyExecutor {
         // TODO: Support collections of commands?
     }
 
+    public void action(final String property, final Object target,
+            final BiConsumer<Command, Object> operation) {
+        final Command command;
+        final Boolean exists;
+
+        exists = transformers.containsKey(property);
+        if ((exists) && (semaphores.get(property).tryAcquire())) {
+            command = transformers.get(property);
+            if (command.valid(target)) {
+                operation.accept(command, target);
+            }
+            semaphores.get(property).release();
+        }
+    }
+
     @Override
     public void addFunction(final String property, final Command function) {
         transformers.put(property, function);
@@ -26,30 +42,14 @@ public class DefaultPropertyExecutor implements PropertyExecutor {
 
     @Override
     public void apply(final String property, final Object target) {
-        final Command command;
-
-        if ((transformers.containsKey(property))
-                && (semaphores.get(property).tryAcquire())) {
-            command = (transformers.get(property));
-            if (command.valid(target)) {
-                command.apply(target);
-            }
-            semaphores.get(property).release();
-        }
+        action(property, target,
+                (final Command c, final Object i) -> c.apply(i));
     }
 
     @Override
     public void undo(final String property, final Object target) {
-        final Command command;
-
-        if ((transformers.containsKey(property))
-                && (semaphores.get(property).tryAcquire())) {
-            command = (transformers.get(property));
-            if (command.valid(target)) {
-                command.undo(target);
-            }
-            semaphores.get(property).release();
-        }
+        action(property, target,
+                (final Command c, final Object i) -> c.undo(i));
     }
 
 }
