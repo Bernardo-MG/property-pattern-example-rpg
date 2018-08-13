@@ -2,11 +2,12 @@
 package com.bernardomg.example.rpg.rule.command;
 
 import com.bernardomg.example.rpg.character.Character;
-import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.command.Command;
 import com.bernardomg.example.rpg.constants.DefaultItemSlots;
 import com.bernardomg.example.rpg.inventory.item.Equipment;
 import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
+import com.bernardomg.example.rpg.inventory.slot.CharacterItemSlot;
+import com.bernardomg.example.rpg.inventory.slot.WrapperCharacterItemSlot;
 
 public final class EquipTwoHandedCommand implements Command {
 
@@ -19,12 +20,12 @@ public final class EquipTwoHandedCommand implements Command {
         // TODO: Don't receive an event
         final Character character;
         final Equipment equipment;
-        final EquipItemEvent event;
+        final CharacterItemSlot event;
 
-        event = (EquipItemEvent) target;
+        event = (CharacterItemSlot) target;
 
         character = event.getCharacter();
-        equipment = event.getItemSlot().getItem();
+        equipment = event.getItem();
 
         character.addToItemSlot(DefaultItemSlots.MAIN_HAND.getKey(), equipment);
         character.addToItemSlot(DefaultItemSlots.OFF_HAND.getKey(), equipment);
@@ -38,8 +39,8 @@ public final class EquipTwoHandedCommand implements Command {
         final ItemSlot itemSlot;
         final Boolean valid;
 
-        if (target instanceof EquipItemEvent) {
-            itemSlot = ((EquipItemEvent) target).getItemSlot();
+        if (target instanceof CharacterItemSlot) {
+            itemSlot = ((ItemSlot) target);
 
             valid = ((DefaultItemSlots.MAIN_HAND.getKey()
                     .equals(itemSlot.getName()))

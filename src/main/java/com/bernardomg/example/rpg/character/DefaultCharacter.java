@@ -6,9 +6,10 @@ import java.util.Collection;
 import java.util.Collections;
 
 import com.bernardomg.example.rpg.ability.Ability;
-import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.inventory.item.Equipment;
 import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
+import com.bernardomg.example.rpg.inventory.slot.CharacterItemSlot;
+import com.bernardomg.example.rpg.inventory.slot.WrapperCharacterItemSlot;
 import com.bernardomg.example.rpg.inventory.slot.store.DefaultItemSlotStore;
 import com.bernardomg.example.rpg.inventory.slot.store.ItemSlotStore;
 import com.bernardomg.example.rpg.property.PropertyExecutor;
@@ -133,9 +134,9 @@ public final class DefaultCharacter implements Character {
     }
 
     private final void applyProperties(final ItemSlot slot) {
-        final EquipItemEvent event;
+        final CharacterItemSlot event;
 
-        event = new EquipItemEvent(this, slot);
+        event = new WrapperCharacterItemSlot(this, slot);
 
         slot.getItem().getProperties().stream()
                 .forEach((p) -> propertyExecutor.apply(p, event));
