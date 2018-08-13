@@ -1,10 +1,10 @@
 
 package com.bernardomg.example.rpg.character;
 
-import com.bernardomg.example.rpg.character.ability.Ability;
-import com.bernardomg.example.rpg.character.item.Equipment;
-import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
-import com.bernardomg.example.rpg.character.stat.store.StatStore;
+import com.bernardomg.example.rpg.ability.Ability;
+import com.bernardomg.example.rpg.inventory.item.Equipment;
+import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
+import com.bernardomg.example.rpg.stat.store.StatStore;
 
 public interface Character extends StatStore {
 

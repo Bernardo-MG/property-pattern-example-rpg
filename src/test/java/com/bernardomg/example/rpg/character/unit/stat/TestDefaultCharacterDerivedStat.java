@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import com.bernardomg.example.rpg.builder.character.DefaultCharacterBuilder;
 import com.bernardomg.example.rpg.character.Character;
-import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
-import com.bernardomg.example.rpg.character.stat.MultipliedDerivedStat;
 import com.bernardomg.example.rpg.constants.DefaultStats;
+import com.bernardomg.example.rpg.stat.MultipliedDerivedStat;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterDerivedStat {

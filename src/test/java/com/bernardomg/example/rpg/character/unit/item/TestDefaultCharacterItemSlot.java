@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import com.bernardomg.example.rpg.builder.character.DefaultCharacterBuilder;
+import com.bernardomg.example.rpg.builder.item.DefaultItemBuilder;
 import com.bernardomg.example.rpg.character.Character;
-import com.bernardomg.example.rpg.character.builder.DefaultCharacterBuilder;
-import com.bernardomg.example.rpg.character.item.Equipment;
-import com.bernardomg.example.rpg.character.item.builder.DefaultItemBuilder;
 import com.bernardomg.example.rpg.constants.DefaultItemSlots;
 import com.bernardomg.example.rpg.constants.DefaultProperties;
 import com.bernardomg.example.rpg.constants.DefaultStats;
+import com.bernardomg.example.rpg.inventory.item.Equipment;
 import com.bernardomg.example.rpg.rule.command.EquipTwoHandedCommand;
 
 @RunWith(JUnitPlatform.class)

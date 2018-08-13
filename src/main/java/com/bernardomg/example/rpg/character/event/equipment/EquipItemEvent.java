@@ -2,9 +2,9 @@
 package com.bernardomg.example.rpg.character.event.equipment;
 
 import com.bernardomg.example.rpg.character.Character;
-import com.bernardomg.example.rpg.character.item.Equipment;
-import com.bernardomg.example.rpg.character.slot.item.ItemSlot;
 import com.bernardomg.example.rpg.event.Event;
+import com.bernardomg.example.rpg.inventory.item.Equipment;
+import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
 
 public final class EquipItemEvent implements Event {
 
