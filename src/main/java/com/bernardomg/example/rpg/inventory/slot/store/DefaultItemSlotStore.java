@@ -85,7 +85,7 @@ public final class DefaultItemSlotStore implements ItemSlotStore {
     }
 
     @Override
-    public final Iterable<ItemSlot> getItemSlots() {
+    public final Collection<ItemSlot> getItemSlots() {
         return Collections.unmodifiableCollection(equipment);
     }
 

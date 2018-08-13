@@ -1,6 +1,8 @@
 
 package com.bernardomg.example.rpg.inventory.slot.store;
 
+import java.util.Collection;
+
 import com.bernardomg.example.rpg.inventory.item.Equipment;
 import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
 
@@ -14,7 +16,7 @@ public interface ItemSlotStore {
 
     public ItemSlot getItemSlot(final String slot);
 
-    public Iterable<ItemSlot> getItemSlots();
+    public Collection<ItemSlot> getItemSlots();
 
     public void removeItemSlot(final ItemSlot slot);
 

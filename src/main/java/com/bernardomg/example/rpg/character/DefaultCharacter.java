@@ -4,7 +4,6 @@ package com.bernardomg.example.rpg.character;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.stream.StreamSupport;
 
 import com.bernardomg.example.rpg.ability.Ability;
 import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
@@ -78,7 +77,7 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final Iterable<ItemSlot> getItemSlots() {
+    public final Collection<ItemSlot> getItemSlots() {
         return itemSlotStore.getItemSlots();
     }
 
@@ -93,10 +92,9 @@ public final class DefaultCharacter implements Character {
         final Integer itemVal;
 
         baseVal = statStore.getStatValue(stat);
-        itemVal = StreamSupport
-                .stream(itemSlotStore.getItemSlots().spliterator(), false)
-                .map(ItemSlot::getItem).filter((e) -> e.hasStat(stat))
-                .map((e) -> e.getStatValue(stat)).reduce(0, (a, b) -> a + b);
+        itemVal = itemSlotStore.getItemSlots().stream().map(ItemSlot::getItem)
+                .filter((e) -> e.hasStat(stat)).map((e) -> e.getStatValue(stat))
+                .reduce(0, (a, b) -> a + b);
 
         return baseVal + itemVal;
     }
