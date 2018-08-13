@@ -24,7 +24,7 @@ public final class EquipTwoHandedCommand implements Command {
         event = (EquipItemEvent) target;
 
         character = event.getCharacter();
-        equipment = event.getEquipment();
+        equipment = event.getItemSlot().getItem();
 
         character.addToItemSlot(DefaultItemSlots.MAIN_HAND.getKey(), equipment);
         character.addToItemSlot(DefaultItemSlots.OFF_HAND.getKey(), equipment);

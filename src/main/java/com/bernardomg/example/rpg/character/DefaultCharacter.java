@@ -55,7 +55,7 @@ public final class DefaultCharacter implements Character {
 
         if (added) {
             itemSlot = itemSlotStore.getItemSlot(slot);
-            fireEquipItemEvent(item, itemSlot);
+            applyProperties(itemSlot);
         }
 
         return added;
@@ -132,13 +132,12 @@ public final class DefaultCharacter implements Character {
         statStore.setStatValue(stat, value);
     }
 
-    private final void fireEquipItemEvent(final Equipment equipment,
-            final ItemSlot slot) {
+    private final void applyProperties(final ItemSlot slot) {
         final EquipItemEvent event;
 
-        event = new EquipItemEvent(this, equipment, slot);
+        event = new EquipItemEvent(this, slot);
 
-        equipment.getProperties().stream()
+        slot.getItem().getProperties().stream()
                 .forEach((p) -> propertyExecutor.apply(p, event));
     }
 
