@@ -8,37 +8,48 @@ import com.bernardomg.example.rpg.constants.DefaultItemSlots;
 import com.bernardomg.example.rpg.inventory.item.Equipment;
 import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
 
-public final class EquipTwoHandedCommand implements Command<EquipItemEvent> {
+public final class EquipTwoHandedCommand implements Command {
 
     public EquipTwoHandedCommand() {
         super();
     }
 
     @Override
-    public final void apply(final EquipItemEvent target) {
+    public final void apply(final Object target) {
         // TODO: Don't receive an event
         final Character character;
         final Equipment equipment;
+        final EquipItemEvent event;
 
-        character = target.getCharacter();
-        equipment = target.getEquipment();
+        event = (EquipItemEvent) target;
+
+        character = event.getCharacter();
+        equipment = event.getEquipment();
 
         character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), equipment);
         character.addEquipment(DefaultItemSlots.OFF_HAND.getKey(), equipment);
     }
 
     @Override
-    public final void undo(final EquipItemEvent target) {}
+    public final void undo(final Object target) {}
 
     @Override
-    public final Boolean valid(final EquipItemEvent target) {
+    public final Boolean valid(final Object target) {
         final ItemSlot itemSlot;
+        final Boolean valid;
 
-        itemSlot = target.getItemSlot();
+        if (target instanceof EquipItemEvent) {
+            itemSlot = ((EquipItemEvent) target).getItemSlot();
 
-        return ((DefaultItemSlots.MAIN_HAND.getKey().equals(itemSlot.getName()))
-                || (DefaultItemSlots.OFF_HAND.getKey()
-                        .equals(itemSlot.getName())));
+            valid = ((DefaultItemSlots.MAIN_HAND.getKey()
+                    .equals(itemSlot.getName()))
+                    || (DefaultItemSlots.OFF_HAND.getKey()
+                            .equals(itemSlot.getName())));
+        } else {
+            valid = false;
+        }
+
+        return valid;
     }
 
 }

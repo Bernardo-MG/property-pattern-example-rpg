@@ -29,7 +29,7 @@ public final class DefaultCharacterBuilder implements CharacterBuilder {
 
     @Override
     public final CharacterBuilder registerProperty(final String property,
-            final Command<? extends Object> function) {
+            final Command function) {
         propertyTransformer.addFunction(property, function);
 
         return this;

@@ -9,9 +9,9 @@ import com.bernardomg.example.rpg.command.Command;
 
 public class DefaultPropertyExecutor implements PropertyExecutor {
 
-    private final Map<String, Semaphore>                 semaphores   = new HashMap<>();
+    private final Map<String, Semaphore> semaphores   = new HashMap<>();
 
-    private final Map<String, Command<? extends Object>> transformers = new HashMap<>();
+    private final Map<String, Command>   transformers = new HashMap<>();
 
     public DefaultPropertyExecutor() {
         super();
@@ -19,8 +19,7 @@ public class DefaultPropertyExecutor implements PropertyExecutor {
     }
 
     @Override
-    public void addFunction(final String property,
-            final Command<? extends Object> function) {
+    public void addFunction(final String property, final Command function) {
         transformers.put(property, function);
         semaphores.put(property, new Semaphore(1));
     }

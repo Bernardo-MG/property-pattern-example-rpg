@@ -9,7 +9,7 @@ public interface CharacterBuilder {
     public Character get();
 
     public CharacterBuilder registerProperty(final String property,
-            final Command<? extends Object> function);
+            final Command function);
 
     public CharacterBuilder withAttribute(final String name);
 

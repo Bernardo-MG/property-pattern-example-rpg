@@ -1,12 +1,12 @@
 
 package com.bernardomg.example.rpg.command;
 
-public interface Command<T> {
+public interface Command {
 
-    public void apply(final T target);
+    public void apply(final Object target);
 
-    public void undo(final T target);
+    public void undo(final Object target);
 
-    public Boolean valid(final T target);
+    public Boolean valid(final Object target);
 
 }
