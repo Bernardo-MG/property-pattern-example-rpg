@@ -90,8 +90,14 @@ public final class DefaultItemSlotStore implements ItemSlotStore {
     }
 
     @Override
-    public final void removeItemSlot(final ItemSlot slot) {
-        equipment.remove(slot);
+    public final void removeItemSlot(final String slot) {
+        final ItemSlot itemSlot;
+
+        itemSlot = getItemSlot(slot);
+
+        if (itemSlot != null) {
+            equipment.remove(itemSlot);
+        }
     }
 
 }

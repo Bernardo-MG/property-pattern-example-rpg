@@ -37,8 +37,7 @@ public final class DefaultCharacter implements Character {
     public final void addAbility(final Ability ability) {
         abilities.add(ability);
 
-        ability.getProperties().stream()
-                .forEach((p) -> propertyExecutor.apply(p, statStore));
+        applyProperties(ability);
     }
 
     @Override
@@ -64,6 +63,11 @@ public final class DefaultCharacter implements Character {
 
     @Override
     public final void clearSlot(final String slot) {
+        final ItemSlot itemSlot;
+
+        itemSlot = itemSlotStore.getItemSlot(slot);
+        removeProperties(itemSlot);
+
         itemSlotStore.clearSlot(slot);
     }
 
@@ -109,12 +113,12 @@ public final class DefaultCharacter implements Character {
     public final void removeAbility(final Ability ability) {
         abilities.remove(ability);
 
-        ability.getProperties().stream()
-                .forEach((p) -> propertyExecutor.undo(p, statStore));
+        removeProperties(ability);
     }
 
     @Override
-    public final void removeItemSlot(final ItemSlot slot) {
+    public final void removeItemSlot(final String slot) {
+        clearSlot(slot);
         itemSlotStore.removeItemSlot(slot);
     }
 
@@ -133,6 +137,11 @@ public final class DefaultCharacter implements Character {
         statStore.setStatValue(stat, value);
     }
 
+    private final void applyProperties(final Ability ability) {
+        ability.getProperties().stream()
+                .forEach((p) -> propertyExecutor.apply(p, statStore));
+    }
+
     private final void applyProperties(final ItemSlot slot) {
         final CharacterItemSlot event;
 
@@ -140,6 +149,20 @@ public final class DefaultCharacter implements Character {
 
         slot.getItem().getProperties().stream()
                 .forEach((p) -> propertyExecutor.apply(p, event));
+    }
+
+    private final void removeProperties(final Ability ability) {
+        ability.getProperties().stream()
+                .forEach((p) -> propertyExecutor.undo(p, statStore));
+    }
+
+    private final void removeProperties(final ItemSlot slot) {
+        final CharacterItemSlot event;
+
+        event = new WrapperCharacterItemSlot(this, slot);
+
+        slot.getItem().getProperties().stream()
+                .forEach((p) -> propertyExecutor.undo(p, event));
     }
 
 }

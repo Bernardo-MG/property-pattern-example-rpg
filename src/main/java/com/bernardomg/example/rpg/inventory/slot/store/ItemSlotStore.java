@@ -18,6 +18,6 @@ public interface ItemSlotStore {
 
     public Collection<ItemSlot> getItemSlots();
 
-    public void removeItemSlot(final ItemSlot slot);
+    public void removeItemSlot(final String slot);
 
 }
