@@ -30,7 +30,6 @@ public final class WrapperCharacterItemSlot implements CharacterItemSlot {
 
     @Override
     public final String getName() {
-        // TODO Auto-generated method stub
         return itemSlot.getName();
     }
 
