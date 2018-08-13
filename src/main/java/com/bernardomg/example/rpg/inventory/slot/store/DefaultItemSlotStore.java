@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.rpg.inventory.store;
+package com.bernardomg.example.rpg.inventory.slot.store;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,16 +11,22 @@ import com.bernardomg.example.rpg.inventory.item.EmptyEquipment;
 import com.bernardomg.example.rpg.inventory.item.Equipment;
 import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
 
-public final class DefaultInventoryStore implements InventoryStore {
+public final class DefaultItemSlotStore implements ItemSlotStore {
 
     private final Collection<ItemSlot> equipment = new ArrayList<>();
 
-    public DefaultInventoryStore() {
+    public DefaultItemSlotStore() {
         super();
     }
 
     @Override
-    public final Boolean addEquipment(final String slot, final Equipment item) {
+    public final void addItemSlot(final ItemSlot slot) {
+        equipment.add(slot);
+    }
+
+    @Override
+    public final Boolean addToItemSlot(final String slot,
+            final Equipment item) {
         final Optional<ItemSlot> foundSlot;
         final ItemSlot itemSlot;
         final Boolean validSlot;
@@ -49,26 +55,16 @@ public final class DefaultInventoryStore implements InventoryStore {
     }
 
     @Override
-    public final void addItemSlot(final ItemSlot slot) {
-        equipment.add(slot);
-    }
-
-    @Override
-    public final Equipment getEquipment(final String slot) {
+    public final void clearSlot(final String slot) {
         final Optional<ItemSlot> foundSlot;
         final ItemSlot itemSlot;
-        final Equipment result;
 
         foundSlot = equipment.stream().filter((s) -> s.getName().equals(slot))
                 .findFirst();
         if (foundSlot.isPresent()) {
             itemSlot = foundSlot.get();
-            result = itemSlot.getItem();
-        } else {
-            result = null;
+            itemSlot.setItem(new EmptyEquipment());
         }
-
-        return result;
     }
 
     @Override
@@ -91,19 +87,6 @@ public final class DefaultInventoryStore implements InventoryStore {
     @Override
     public final Iterable<ItemSlot> getItemSlots() {
         return Collections.unmodifiableCollection(equipment);
-    }
-
-    @Override
-    public final void removeEquipment(final String slot) {
-        final Optional<ItemSlot> foundSlot;
-        final ItemSlot itemSlot;
-
-        foundSlot = equipment.stream().filter((s) -> s.getName().equals(slot))
-                .findFirst();
-        if (foundSlot.isPresent()) {
-            itemSlot = foundSlot.get();
-            itemSlot.setItem(new EmptyEquipment());
-        }
     }
 
     @Override

@@ -60,68 +60,72 @@ public final class TestDefaultCharacterItemSlot {
 
     @Test
     public final void testSlot_BothHands() {
-        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordSmall);
-        character.addEquipment(DefaultItemSlots.OFF_HAND.getKey(), swordBig);
+        character.addToItemSlot(DefaultItemSlots.MAIN_HAND.getKey(),
+                swordSmall);
+        character.addToItemSlot(DefaultItemSlots.OFF_HAND.getKey(), swordBig);
 
-        Assertions.assertEquals(swordSmall,
-                character.getEquipment(DefaultItemSlots.MAIN_HAND.getKey()));
-        Assertions.assertEquals(swordBig,
-                character.getEquipment(DefaultItemSlots.OFF_HAND.getKey()));
+        Assertions.assertEquals(swordSmall, character
+                .getItemSlot(DefaultItemSlots.MAIN_HAND.getKey()).getItem());
+        Assertions.assertEquals(swordBig, character
+                .getItemSlot(DefaultItemSlots.OFF_HAND.getKey()).getItem());
     }
 
     @Test
     public final void testSlot_InvalidSlot() {
-        character.addEquipment(DefaultItemSlots.ARMOR.getKey(), swordSmall);
+        character.addToItemSlot(DefaultItemSlots.ARMOR.getKey(), swordSmall);
 
         Assertions.assertNull(
-                character.getEquipment(DefaultItemSlots.ARMOR.getKey()));
+                character.getItemSlot(DefaultItemSlots.ARMOR.getKey()));
     }
 
     @Test
     public final void testSlot_ReplaceEquipment() {
-        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordSmall);
-        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordBig);
+        character.addToItemSlot(DefaultItemSlots.MAIN_HAND.getKey(),
+                swordSmall);
+        character.addToItemSlot(DefaultItemSlots.MAIN_HAND.getKey(), swordBig);
 
-        Assertions.assertEquals(swordBig,
-                character.getEquipment(DefaultItemSlots.MAIN_HAND.getKey()));
+        Assertions.assertEquals(swordBig, character
+                .getItemSlot(DefaultItemSlots.MAIN_HAND.getKey()).getItem());
     }
 
     @Test
     public final void testSlot_TwoHanded() {
-        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), twoHanded);
+        character.addToItemSlot(DefaultItemSlots.MAIN_HAND.getKey(), twoHanded);
 
-        Assertions.assertEquals(twoHanded,
-                character.getEquipment(DefaultItemSlots.MAIN_HAND.getKey()));
-        Assertions.assertEquals(twoHanded,
-                character.getEquipment(DefaultItemSlots.OFF_HAND.getKey()));
+        Assertions.assertEquals(twoHanded, character
+                .getItemSlot(DefaultItemSlots.MAIN_HAND.getKey()).getItem());
+        Assertions.assertEquals(twoHanded, character
+                .getItemSlot(DefaultItemSlots.OFF_HAND.getKey()).getItem());
     }
 
     @Test
     public final void testSlot_TwoHanded_Back_NotReplacesEquipment() {
         character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
-        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordSmall);
-        character.addEquipment(DefaultItemSlots.OFF_HAND.getKey(), swordBig);
-        character.addEquipment(DefaultItemSlots.BACK.getKey(), twoHanded);
+        character.addToItemSlot(DefaultItemSlots.MAIN_HAND.getKey(),
+                swordSmall);
+        character.addToItemSlot(DefaultItemSlots.OFF_HAND.getKey(), swordBig);
+        character.addToItemSlot(DefaultItemSlots.BACK.getKey(), twoHanded);
 
-        Assertions.assertEquals(swordSmall,
-                character.getEquipment(DefaultItemSlots.MAIN_HAND.getKey()));
-        Assertions.assertEquals(swordBig,
-                character.getEquipment(DefaultItemSlots.OFF_HAND.getKey()));
-        Assertions.assertEquals(twoHanded,
-                character.getEquipment(DefaultItemSlots.BACK.getKey()));
+        Assertions.assertEquals(swordSmall, character
+                .getItemSlot(DefaultItemSlots.MAIN_HAND.getKey()).getItem());
+        Assertions.assertEquals(swordBig, character
+                .getItemSlot(DefaultItemSlots.OFF_HAND.getKey()).getItem());
+        Assertions.assertEquals(twoHanded, character
+                .getItemSlot(DefaultItemSlots.BACK.getKey()).getItem());
     }
 
     @Test
     public final void testSlot_TwoHanded_ReplaceEquipment() {
         character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
-        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), swordSmall);
-        character.addEquipment(DefaultItemSlots.OFF_HAND.getKey(), swordBig);
-        character.addEquipment(DefaultItemSlots.MAIN_HAND.getKey(), twoHanded);
+        character.addToItemSlot(DefaultItemSlots.MAIN_HAND.getKey(),
+                swordSmall);
+        character.addToItemSlot(DefaultItemSlots.OFF_HAND.getKey(), swordBig);
+        character.addToItemSlot(DefaultItemSlots.MAIN_HAND.getKey(), twoHanded);
 
-        Assertions.assertEquals(twoHanded,
-                character.getEquipment(DefaultItemSlots.MAIN_HAND.getKey()));
-        Assertions.assertEquals(twoHanded,
-                character.getEquipment(DefaultItemSlots.OFF_HAND.getKey()));
+        Assertions.assertEquals(twoHanded, character
+                .getItemSlot(DefaultItemSlots.MAIN_HAND.getKey()).getItem());
+        Assertions.assertEquals(twoHanded, character
+                .getItemSlot(DefaultItemSlots.OFF_HAND.getKey()).getItem());
     }
 
 }

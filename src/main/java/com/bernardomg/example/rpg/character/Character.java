@@ -2,11 +2,10 @@
 package com.bernardomg.example.rpg.character;
 
 import com.bernardomg.example.rpg.ability.Ability;
-import com.bernardomg.example.rpg.inventory.item.store.ItemStore;
 import com.bernardomg.example.rpg.inventory.slot.store.ItemSlotStore;
 import com.bernardomg.example.rpg.stat.store.StatStore;
 
-public interface Character extends StatStore, ItemStore, ItemSlotStore {
+public interface Character extends StatStore, ItemSlotStore {
 
     public void addAbility(final Ability ability);
 
