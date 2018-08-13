@@ -5,9 +5,8 @@ import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.command.Command;
 import com.bernardomg.example.rpg.constants.DefaultItemSlots;
 import com.bernardomg.example.rpg.inventory.item.Equipment;
-import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
 import com.bernardomg.example.rpg.inventory.slot.CharacterItemSlot;
-import com.bernardomg.example.rpg.inventory.slot.WrapperCharacterItemSlot;
+import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
 
 public final class EquipTwoHandedCommand implements Command {
 

@@ -7,8 +7,8 @@ import java.util.Collections;
 
 import com.bernardomg.example.rpg.ability.Ability;
 import com.bernardomg.example.rpg.inventory.item.Equipment;
-import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
 import com.bernardomg.example.rpg.inventory.slot.CharacterItemSlot;
+import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
 import com.bernardomg.example.rpg.inventory.slot.WrapperCharacterItemSlot;
 import com.bernardomg.example.rpg.inventory.slot.store.DefaultItemSlotStore;
 import com.bernardomg.example.rpg.inventory.slot.store.ItemSlotStore;
