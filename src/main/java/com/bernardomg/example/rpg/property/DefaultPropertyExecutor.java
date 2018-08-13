@@ -8,7 +8,7 @@ import java.util.function.BiConsumer;
 
 import com.bernardomg.example.rpg.command.Command;
 
-public class DefaultPropertyExecutor implements PropertyExecutor {
+public final class DefaultPropertyExecutor implements PropertyExecutor {
 
     private final Map<String, Semaphore> semaphores   = new HashMap<>();
 
@@ -19,7 +19,26 @@ public class DefaultPropertyExecutor implements PropertyExecutor {
         // TODO: Support collections of commands?
     }
 
-    public void action(final String property, final Object target,
+    @Override
+    public final void addFunction(final String property,
+            final Command function) {
+        transformers.put(property, function);
+        semaphores.put(property, new Semaphore(1));
+    }
+
+    @Override
+    public final void apply(final String property, final Object target) {
+        doAction(property, target,
+                (final Command c, final Object i) -> c.apply(i));
+    }
+
+    @Override
+    public final void undo(final String property, final Object target) {
+        doAction(property, target,
+                (final Command c, final Object i) -> c.undo(i));
+    }
+
+    private final void doAction(final String property, final Object target,
             final BiConsumer<Command, Object> operation) {
         final Command command;
         final Boolean exists;
@@ -32,24 +51,6 @@ public class DefaultPropertyExecutor implements PropertyExecutor {
             }
             semaphores.get(property).release();
         }
-    }
-
-    @Override
-    public void addFunction(final String property, final Command function) {
-        transformers.put(property, function);
-        semaphores.put(property, new Semaphore(1));
-    }
-
-    @Override
-    public void apply(final String property, final Object target) {
-        action(property, target,
-                (final Command c, final Object i) -> c.apply(i));
-    }
-
-    @Override
-    public void undo(final String property, final Object target) {
-        action(property, target,
-                (final Command c, final Object i) -> c.undo(i));
     }
 
 }
