@@ -15,8 +15,7 @@ public class MagicDamageStatCommand implements Command {
     @Override
     public void apply(final Object target) {
         ((StatStore) target).setStat(DefaultStats.DAMAGE.getKey(),
-                new MultiplyDerivedStat(DefaultStats.INTELLIGENCE.getKey(),
-                        2));
+                new MultiplyDerivedStat(DefaultStats.INTELLIGENCE.getKey(), 2));
     }
 
     @Override

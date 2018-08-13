@@ -12,6 +12,8 @@ import com.bernardomg.example.rpg.character.event.equipment.EquipItemEvent;
 import com.bernardomg.example.rpg.inventory.item.EmptyEquipment;
 import com.bernardomg.example.rpg.inventory.item.Equipment;
 import com.bernardomg.example.rpg.inventory.slot.ItemSlot;
+import com.bernardomg.example.rpg.inventory.store.DefaultInventoryStore;
+import com.bernardomg.example.rpg.inventory.store.InventoryStore;
 import com.bernardomg.example.rpg.property.PropertyExecutor;
 import com.bernardomg.example.rpg.stat.Stat;
 import com.bernardomg.example.rpg.stat.store.DefaultStatStore;
@@ -19,13 +21,13 @@ import com.bernardomg.example.rpg.stat.store.StatStore;
 
 public final class DefaultCharacter implements Character {
 
-    private final Collection<Ability>  abilities = new ArrayList<>();
+    private final Collection<Ability> abilities      = new ArrayList<>();
 
-    private final Collection<ItemSlot> equipment = new ArrayList<>();
+    private final InventoryStore      inventoryStore = new DefaultInventoryStore();
 
-    private final PropertyExecutor     propertyExecutor;
+    private final PropertyExecutor    propertyExecutor;
 
-    private final StatStore            statStore = new DefaultStatStore();
+    private final StatStore           statStore      = new DefaultStatStore();
 
     public DefaultCharacter(final PropertyExecutor propTransformer) {
         super();
@@ -42,30 +44,23 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final void addEquipment(final String slot, final Equipment item) {
-        final Optional<ItemSlot> foundSlot;
+    public final Boolean addEquipment(final String slot, final Equipment item) {
         final ItemSlot itemSlot;
-        final Boolean validSlot;
+        final Boolean added;
 
-        validSlot = StreamSupport.stream(item.getSlots().spliterator(), false)
-                .filter((s) -> s.equals(slot)).findAny().isPresent();
+        added = inventoryStore.addEquipment(slot, item);
 
-        if (validSlot) {
-            foundSlot = equipment.stream()
-                    .filter((s) -> s.getName().equals(slot)).findFirst();
-
-            if (foundSlot.isPresent()) {
-                itemSlot = foundSlot.get();
-                itemSlot.setItem(item);
-
-                fireEquipItemEvent(item, itemSlot);
-            }
+        if (added) {
+            itemSlot = inventoryStore.getItemSlot(slot);
+            fireEquipItemEvent(item, itemSlot);
         }
+
+        return added;
     }
 
     @Override
     public final void addItemSlot(final ItemSlot slot) {
-        equipment.add(slot);
+        inventoryStore.addItemSlot(slot);
     }
 
     @Override
@@ -75,25 +70,17 @@ public final class DefaultCharacter implements Character {
 
     @Override
     public final Equipment getEquipment(final String slot) {
-        final Optional<ItemSlot> foundSlot;
-        final ItemSlot itemSlot;
-        final Equipment result;
+        return inventoryStore.getEquipment(slot);
+    }
 
-        foundSlot = equipment.stream().filter((s) -> s.getName().equals(slot))
-                .findFirst();
-        if (foundSlot.isPresent()) {
-            itemSlot = foundSlot.get();
-            result = itemSlot.getItem();
-        } else {
-            result = null;
-        }
-
-        return result;
+    @Override
+    public final ItemSlot getItemSlot(final String slot) {
+        return inventoryStore.getItemSlot(slot);
     }
 
     @Override
     public final Iterable<ItemSlot> getItemSlots() {
-        return Collections.unmodifiableCollection(equipment);
+        return inventoryStore.getItemSlots();
     }
 
     @Override
@@ -107,9 +94,10 @@ public final class DefaultCharacter implements Character {
         final Integer itemVal;
 
         baseVal = statStore.getStatValue(stat);
-        itemVal = equipment.stream().map(ItemSlot::getItem)
-                .filter((e) -> e.hasStat(stat)).map((e) -> e.getStatValue(stat))
-                .reduce(0, (a, b) -> a + b);
+        itemVal = StreamSupport
+                .stream(inventoryStore.getItemSlots().spliterator(), false)
+                .map(ItemSlot::getItem).filter((e) -> e.hasStat(stat))
+                .map((e) -> e.getStatValue(stat)).reduce(0, (a, b) -> a + b);
 
         return baseVal + itemVal;
     }
@@ -132,8 +120,9 @@ public final class DefaultCharacter implements Character {
         final Optional<ItemSlot> foundSlot;
         final ItemSlot itemSlot;
 
-        foundSlot = equipment.stream().filter((s) -> s.getName().equals(slot))
-                .findFirst();
+        foundSlot = StreamSupport
+                .stream(inventoryStore.getItemSlots().spliterator(), false)
+                .filter((s) -> s.getName().equals(slot)).findFirst();
         if (foundSlot.isPresent()) {
             itemSlot = foundSlot.get();
             itemSlot.setItem(new EmptyEquipment());
@@ -142,7 +131,7 @@ public final class DefaultCharacter implements Character {
 
     @Override
     public final void removeItemSlot(final ItemSlot slot) {
-        equipment.remove(slot);
+        inventoryStore.removeItemSlot(slot);
     }
 
     @Override
