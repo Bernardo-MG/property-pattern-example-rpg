@@ -36,6 +36,8 @@ public final class DefaultStatStore implements StatStore {
             value = ((ValueStat) found).getValue();
         } else if (found instanceof DerivedStat) {
             derived = ((DerivedStat) found);
+
+            // Looks for the stat from which it derives
             if (stats.containsKey(derived.getStat())) {
                 mainStat = stats.get(derived.getStat());
                 value = derived.getValue(mainStat);
