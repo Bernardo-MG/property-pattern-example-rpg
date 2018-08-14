@@ -26,6 +26,11 @@ public class EmptyEquipment implements Equipment {
     }
 
     @Override
+    public final Stat getStat(final String name) {
+        return null;
+    }
+
+    @Override
     public Collection<String> getStatKeys() {
         return Collections.emptyList();
     }

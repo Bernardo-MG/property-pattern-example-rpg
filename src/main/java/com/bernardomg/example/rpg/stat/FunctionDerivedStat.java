@@ -3,27 +3,22 @@ package com.bernardomg.example.rpg.stat;
 
 import java.util.function.Function;
 
-public final class FunctionDerivedStat implements DerivedStat {
-
-    private final String                  attribute;
+public final class FunctionDerivedStat implements Stat {
 
     private final Function<Stat, Integer> function;
 
-    public FunctionDerivedStat(final String att,
+    private final Stat                    stat;
+
+    public FunctionDerivedStat(final Stat stat,
             final Function<Stat, Integer> func) {
         super();
 
-        attribute = att;
+        this.stat = stat;
         function = func;
     }
 
     @Override
-    public final String getStat() {
-        return attribute;
-    }
-
-    @Override
-    public final Integer getValue(final Stat stat) {
+    public final Integer getValue() {
         return function.apply(stat);
     }
 

@@ -10,6 +10,7 @@ import com.bernardomg.example.rpg.character.Character;
 import com.bernardomg.example.rpg.character.unit.factory.TestCharacterFactory;
 import com.bernardomg.example.rpg.constants.DefaultStats;
 import com.bernardomg.example.rpg.stat.MultiplyDerivedStat;
+import com.bernardomg.example.rpg.stat.Stat;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterDerivedStat {
@@ -45,13 +46,16 @@ public final class TestDefaultCharacterDerivedStat {
 
     @Test
     public final void testDerived_ChangeFunction_ChangesDerived() {
+        final Stat stat;
+
         character.setStatValue(DefaultStats.STRENGTH.getKey(), 2);
 
         Assertions.assertEquals((Integer) 4,
                 character.getStatValue(DefaultStats.DAMAGE.getKey()));
 
+        stat = character.getStat(DefaultStats.STRENGTH.getKey());
         character.setStat(DefaultStats.DAMAGE.getKey(),
-                new MultiplyDerivedStat(DefaultStats.STRENGTH.getKey(), 3));
+                new MultiplyDerivedStat(stat, 3));
 
         Assertions.assertEquals((Integer) 6,
                 character.getStatValue(DefaultStats.DAMAGE.getKey()));

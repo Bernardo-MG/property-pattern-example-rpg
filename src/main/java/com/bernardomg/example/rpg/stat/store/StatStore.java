@@ -7,6 +7,8 @@ import com.bernardomg.example.rpg.stat.Stat;
 
 public interface StatStore {
 
+    public Stat getStat(final String name);
+
     public Collection<String> getStatKeys();
 
     public Integer getStatValue(final String name);

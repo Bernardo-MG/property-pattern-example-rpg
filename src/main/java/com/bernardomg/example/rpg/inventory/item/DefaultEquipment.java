@@ -39,6 +39,11 @@ public final class DefaultEquipment implements Equipment {
     }
 
     @Override
+    public final Stat getStat(final String name) {
+        return statStore.getStat(name);
+    }
+
+    @Override
     public final Collection<String> getStatKeys() {
         return statStore.getStatKeys();
     }

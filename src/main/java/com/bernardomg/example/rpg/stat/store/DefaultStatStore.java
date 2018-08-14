@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.bernardomg.example.rpg.stat.DerivedStat;
 import com.bernardomg.example.rpg.stat.Stat;
 import com.bernardomg.example.rpg.stat.ValueStat;
 
@@ -19,6 +18,11 @@ public final class DefaultStatStore implements StatStore {
     }
 
     @Override
+    public final Stat getStat(final String name) {
+        return stats.get(name);
+    }
+
+    @Override
     public final Collection<String> getStatKeys() {
         return Collections.unmodifiableCollection(stats.keySet());
     }
@@ -26,24 +30,12 @@ public final class DefaultStatStore implements StatStore {
     @Override
     public final Integer getStatValue(final String stat) {
         final Stat found;
-        final Stat mainStat;
-        final DerivedStat derived;
         final Integer value;
 
-        found = stats.get(stat);
+        if (stats.containsKey(stat)) {
+            found = stats.get(stat);
 
-        if (found instanceof ValueStat) {
-            value = ((ValueStat) found).getValue();
-        } else if (found instanceof DerivedStat) {
-            derived = ((DerivedStat) found);
-
-            // Looks for the stat from which it derives
-            if (stats.containsKey(derived.getStat())) {
-                mainStat = stats.get(derived.getStat());
-                value = derived.getValue(mainStat);
-            } else {
-                value = 0;
-            }
+            value = found.getValue();
         } else {
             value = 0;
         }
