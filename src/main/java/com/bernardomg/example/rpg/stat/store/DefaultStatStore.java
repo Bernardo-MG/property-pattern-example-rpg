@@ -19,7 +19,7 @@ public final class DefaultStatStore implements StatStore {
     }
 
     @Override
-    public final Collection<String> getStatNames() {
+    public final Collection<String> getStatKeys() {
         return Collections.unmodifiableCollection(stats.keySet());
     }
 

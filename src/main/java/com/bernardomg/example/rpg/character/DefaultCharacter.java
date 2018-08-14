@@ -87,8 +87,8 @@ public final class DefaultCharacter implements Character {
     }
 
     @Override
-    public final Collection<String> getStatNames() {
-        return statStore.getStatNames();
+    public final Collection<String> getStatKeys() {
+        return statStore.getStatKeys();
     }
 
     @Override

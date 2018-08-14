@@ -26,7 +26,7 @@ public class EmptyEquipment implements Equipment {
     }
 
     @Override
-    public Collection<String> getStatNames() {
+    public Collection<String> getStatKeys() {
         return Collections.emptyList();
     }
 
