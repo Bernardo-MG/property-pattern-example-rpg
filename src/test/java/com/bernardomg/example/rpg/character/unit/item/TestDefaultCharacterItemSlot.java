@@ -1,21 +1,17 @@
 
 package com.bernardomg.example.rpg.character.unit.item;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.example.rpg.builder.character.DefaultCharacterBuilder;
-import com.bernardomg.example.rpg.builder.item.DefaultItemBuilder;
 import com.bernardomg.example.rpg.character.Character;
+import com.bernardomg.example.rpg.character.unit.factory.TestCharacterFactory;
+import com.bernardomg.example.rpg.character.unit.factory.TestItemFactory;
 import com.bernardomg.example.rpg.constants.DefaultItemSlots;
-import com.bernardomg.example.rpg.constants.DefaultProperties;
 import com.bernardomg.example.rpg.constants.DefaultStats;
 import com.bernardomg.example.rpg.inventory.item.Equipment;
-import com.bernardomg.example.rpg.rule.command.EquipTwoHandedCommand;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterItemSlot {
@@ -31,31 +27,11 @@ public final class TestDefaultCharacterItemSlot {
     public TestDefaultCharacterItemSlot() {
         super();
 
-        character = new DefaultCharacterBuilder()
-                .withAttribute(DefaultStats.STRENGTH.getKey())
-                .withMultipliedDerivedAttribute(DefaultStats.DAMAGE.getKey(),
-                        DefaultStats.STRENGTH.getKey(), 2)
-                .withItemSlot(DefaultItemSlots.MAIN_HAND.getKey())
-                .withItemSlot(DefaultItemSlots.OFF_HAND.getKey())
-                .withItemSlot(DefaultItemSlots.BACK.getKey())
-                .registerProperty(DefaultProperties.TWO_HANDED.getKey(),
-                        new EquipTwoHandedCommand())
-                .get();
+        character = TestCharacterFactory.getDefaultCharacter();
 
-        swordSmall = new DefaultItemBuilder().equipment()
-                .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
-                        DefaultItemSlots.OFF_HAND.getKey()))
-                .withAttribute(DefaultStats.DAMAGE.getKey(), 5).get();
-        swordBig = new DefaultItemBuilder().equipment()
-                .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
-                        DefaultItemSlots.OFF_HAND.getKey()))
-                .withAttribute(DefaultStats.DAMAGE.getKey(), 10).get();
-        twoHanded = new DefaultItemBuilder().equipment()
-                .withSlots(Arrays.asList(DefaultItemSlots.MAIN_HAND.getKey(),
-                        DefaultItemSlots.OFF_HAND.getKey(),
-                        DefaultItemSlots.BACK.getKey()))
-                .withAttribute(DefaultStats.DAMAGE.getKey(), 10)
-                .withProperty(DefaultProperties.TWO_HANDED.getKey()).get();
+        swordSmall = TestItemFactory.getSmallSword();
+        swordBig = TestItemFactory.getBigSword();
+        twoHanded = TestItemFactory.getTwoHandedSword();
     }
 
     @Test

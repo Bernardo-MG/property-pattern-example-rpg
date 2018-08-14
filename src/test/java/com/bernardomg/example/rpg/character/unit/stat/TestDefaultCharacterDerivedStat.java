@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.example.rpg.builder.character.DefaultCharacterBuilder;
 import com.bernardomg.example.rpg.character.Character;
+import com.bernardomg.example.rpg.character.unit.factory.TestCharacterFactory;
 import com.bernardomg.example.rpg.constants.DefaultStats;
 import com.bernardomg.example.rpg.stat.MultiplyDerivedStat;
 
@@ -19,11 +19,7 @@ public final class TestDefaultCharacterDerivedStat {
     public TestDefaultCharacterDerivedStat() {
         super();
 
-        character = new DefaultCharacterBuilder()
-                .withAttribute(DefaultStats.STRENGTH.getKey())
-                .withMultipliedDerivedAttribute(DefaultStats.DAMAGE.getKey(),
-                        DefaultStats.STRENGTH.getKey(), 2)
-                .get();
+        character = TestCharacterFactory.getDefaultCharacter();
     }
 
     @Test

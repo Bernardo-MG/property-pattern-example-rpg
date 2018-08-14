@@ -8,11 +8,10 @@ import org.junit.runner.RunWith;
 
 import com.bernardomg.example.rpg.ability.Ability;
 import com.bernardomg.example.rpg.ability.DefaultAbility;
-import com.bernardomg.example.rpg.builder.character.DefaultCharacterBuilder;
 import com.bernardomg.example.rpg.character.Character;
+import com.bernardomg.example.rpg.character.unit.factory.TestCharacterFactory;
 import com.bernardomg.example.rpg.constants.DefaultAbilities;
 import com.bernardomg.example.rpg.constants.DefaultStats;
-import com.bernardomg.example.rpg.rule.command.MagicDamageStatCommand;
 
 @RunWith(JUnitPlatform.class)
 public final class TestDefaultCharacterAbilityProperty {
@@ -26,14 +25,7 @@ public final class TestDefaultCharacterAbilityProperty {
     public TestDefaultCharacterAbilityProperty() {
         super();
 
-        character = new DefaultCharacterBuilder()
-                .withAttribute(DefaultStats.STRENGTH.getKey())
-                .withAttribute(DefaultStats.INTELLIGENCE.getKey())
-                .withMultipliedDerivedAttribute(DefaultStats.DAMAGE.getKey(),
-                        DefaultStats.STRENGTH.getKey(), 2)
-                .registerProperty(DefaultAbilities.MAGIC_DAMAGE.getKey(),
-                        new MagicDamageStatCommand())
-                .get();
+        character = TestCharacterFactory.getMagicCharacter();
 
         magicDamageAbility = new DefaultAbility(
                 DefaultAbilities.MAGIC_DAMAGE.getKey());
